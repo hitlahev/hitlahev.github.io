@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Hit-La-Hev 🔥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #08080e;
+            --s1: #101018;
+            --s2: #18181f;
+            --s3: #20202a;
+            --border: rgba(255,255,255,0.08);
+            --green: #00e676;
+            --red: #ff4060;
+            --gold: #ffc940;
+            --blue: #4d9fff;
+            --text: #f0f0f0;
+            --muted: #555;
+            --muted2: #888;
+            --r: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden
+        }
+
+        body {
+            font-family: 'Heebo',sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 15px
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch
+        }
+
+            .screen.active {
+                display: flex
+            }
+
+        /* LOBBY */
+        #lobbyScreen {
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(255,64,96,.12) 0%, transparent 60%), var(--bg)
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 28px
+        }
+
+        .logo-emoji {
+            font-size: 3rem;
+            display: block;
+            animation: bob 3s ease-in-out infinite
+        }
+
+        @keyframes bob {
+            0%,100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+        }
+
+        .logo-name {
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--red) 0%, var(--gold) 50%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block
+        }
+
+        .logo-tag {
+            font-size: .8rem;
+            color: var(--muted2);
+            margin-top: 2px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            max-width: 380px
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-bottom: 20px
+        }
+
+        .tab {
+            padding: 10px;
+            border: 1.5px solid var(--border);
+            background: transparent;
+            color: var(--muted2);
+            border-radius: 10px;
+            font-family: 'Heebo',sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s
+        }
+
+            .tab.on {
+                background: var(--red);
+                border-color: var(--red);
+                color: #fff
+            }
+
+        .field {
+            margin-bottom: 14px
+        }
+
+            .field label {
+                display: block;
+                font-size: .72rem;
+                color: var(--muted2);
+                margin-bottom: 5px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase
+            }
+
+            .field input, .field select {
+                width: 100%;
+                padding: 11px 14px;
+                background: var(--s2);
+                border: 1.5px solid var(--border);
+                border-radius: 10px;
+                color: var(--text);
+                font-family: 'Heebo',sans-serif;
+                font-size: .95rem;
+                outline: none;
+                transition: .15s;
+                direction: rtl
+            }
+
+                .field input:focus, .field select:focus {
+                    border-color: var(--red);
+                    background: var(--s3)
+                }
+
+                .field select option {
+                    background: var(--s2)
+                }
+
+                .field input[style*="letter-spacing"] {
+                    text-align: center;
+                    font-family: 'DM Mono',monospace;
+                    font-size: 1.3rem
+                }
+
+        .win-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px
+        }
+
+        .win-opt {
+            flex: 1;
+            padding: 9px 6px;
+            border: 1.5px solid var(--border);
+            background: transparent;
+            color: var(--muted2);
+            border-radius: 10px;
+            font-family: 'Heebo',sans-serif;
+            font-size: .85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+            text-align: center
+        }
+
+            .win-opt.on {
+                background: rgba(255,201,64,.15);
+                border-color: var(--gold);
+                color: var(--gold)
+            }
+
+        .win-label {
+            font-size: .72rem;
+            color: var(--muted2);
+            margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            background: var(--red);
+            color: #fff;
+            font-family: 'Heebo',sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: .2s;
+            margin-top: 6px
+        }
+
+            .btn:hover:not(:disabled) {
+                background: #ff6070;
+                box-shadow: 0 6px 24px rgba(255,64,96,.35);
+                transform: translateY(-1px)
+            }
+
+            .btn:disabled {
+                background: var(--s3);
+                color: var(--muted);
+                cursor: not-allowed
+            }
+
+            .btn.ghost {
+                background: transparent;
+                border: 1.5px solid var(--border);
+                color: var(--muted2);
+                font-weight: 600;
+                margin-top: 8px
+            }
+
+                .btn.ghost:hover:not(:disabled) {
+                    border-color: var(--red);
+                    color: var(--red);
+                    background: transparent;
+                    box-shadow: none;
+                    transform: none
+                }
+
+            .btn.small {
+                padding: 9px 16px;
+                font-size: .85rem;
+                width: auto;
+                margin-top: 0
+            }
+
+        .err {
+            color: var(--red);
+            font-size: .8rem;
+            text-align: center;
+            margin-top: 8px;
+            min-height: 18px
+        }
+
+        /* WAIT */
+        #waitScreen {
+            align-items: center;
+            justify-content: center;
+            padding: 20px
+        }
+
+        .wait-box {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            max-width: 380px
+        }
+
+        .code-display {
+            text-align: center;
+            background: var(--s2);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,64,96,.2)
+        }
+
+        .code-label {
+            font-size: .7rem;
+            color: var(--muted2);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .code-big {
+            font-family: 'DM Mono',monospace;
+            font-size: 2.6rem;
+            font-weight: 500;
+            color: var(--red);
+            letter-spacing: 10px
+        }
+
+        .code-copy {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: 4px;
+            cursor: pointer;
+            user-select: none
+        }
+
+            .code-copy:hover {
+                color: var(--red)
+            }
+
+        .plist-title {
+            font-size: .72rem;
+            color: var(--muted2);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px
+        }
+
+        .chip {
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 5px 12px;
+            font-size: .82rem
+        }
+
+            .chip.host {
+                border-color: var(--gold);
+                color: var(--gold)
+            }
+
+        .game-info-pill {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px
+        }
+
+        .info-badge {
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: .75rem;
+            color: var(--muted2)
+        }
+
+            .info-badge span {
+                color: var(--gold);
+                font-weight: 700
+            }
+
+        /* GAME */
+        #gameScreen {
+            padding: 0;
+            justify-content: flex-start
+        }
+
+        .game-wrap {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 12px 12px 24px;
+            min-height: 100%
+        }
+
+        .gh {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 0 2px
+        }
+
+        .room-pill {
+            font-family: 'DM Mono',monospace;
+            font-size: .72rem;
+            color: var(--muted2);
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 5px 12px
+        }
+
+        .win-target-pill {
+            font-family: 'DM Mono',monospace;
+            font-size: .72rem;
+            color: var(--gold);
+            background: rgba(255,201,64,.1);
+            border: 1px solid rgba(255,201,64,.3);
+            border-radius: 20px;
+            padding: 5px 12px
+        }
+
+        .scores {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            margin-bottom: 12px;
+            scrollbar-width: none
+        }
+
+            .scores::-webkit-scrollbar {
+                display: none
+            }
+
+        .sc {
+            flex: 0 0 auto;
+            background: var(--s1);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 12px;
+            text-align: center;
+            min-width: 80px;
+            transition: .3s
+        }
+
+            .sc.me {
+                border-color: rgba(255,64,96,.4);
+                background: rgba(255,64,96,.06)
+            }
+
+            .sc.active {
+                border-color: var(--gold) !important;
+                box-shadow: 0 0 12px rgba(255,201,64,.25)
+            }
+
+        .sc-n {
+            font-size: .7rem;
+            color: var(--muted2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70px
+        }
+
+        .sc-p {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1
+        }
+
+        .sc-t {
+            font-size: .68rem;
+            color: var(--gold)
+        }
+
+        .win-progress {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-bottom: 10px
+        }
+
+        .win-progress-label {
+            font-size: .68rem;
+            color: var(--muted2);
+            margin-bottom: 5px
+        }
+
+        .win-progress-bar {
+            height: 4px;
+            background: var(--s3);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .win-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--red), var(--gold));
+            border-radius: 4px;
+            transition: width .5s ease
+        }
+
+        .banner {
+            background: rgba(255,64,96,.08);
+            border: 1px solid rgba(255,64,96,.2);
+            border-radius: 12px;
+            padding: 8px 14px;
+            text-align: center;
+            font-size: .85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--red)
+        }
+
+            .banner.other {
+                background: rgba(255,255,255,.04);
+                border-color: var(--border);
+                color: var(--muted2)
+            }
+
+        /* Flip card */
+        .song-card-wrap {
+            position: relative;
+            width: 100%;
+            margin-bottom: 12px
+        }
+
+        .flip-wrap {
+            perspective: 900px;
+            height: 110px;
+            width: 100%
+        }
+
+        .flip-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: .6s cubic-bezier(.4,0,.2,1);
+            border-radius: 18px
+        }
+
+            .flip-inner.flipped {
+                transform: rotateY(180deg)
+            }
+
+        .face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            overflow: hidden
+        }
+
+        .face-front {
+            background: linear-gradient(135deg,#1a0808,#0a0a18);
+            border: 1.5px solid rgba(255,64,96,.2);
+            gap: 14px
+        }
+
+            .face-front .fn {
+                font-size: 1.5rem
+            }
+
+            .face-front .ft {
+                font-size: .82rem;
+                color: rgba(255,255,255,.5);
+                line-height: 1.4
+            }
+
+        .face-back {
+            background: linear-gradient(135deg,#1a0a14,#200a20);
+            border: 1.5px solid rgba(255,64,96,.25);
+            transform: rotateY(180deg);
+            justify-content: space-between
+        }
+
+        .fb-info {
+            flex: 1
+        }
+
+        .fb-t {
+            font-size: .95rem;
+            font-weight: 800
+        }
+
+        .fb-a {
+            font-size: .75rem;
+            color: rgba(255,255,255,.5);
+            margin-top: 2px
+        }
+
+        .fb-y {
+            font-family: 'DM Mono',monospace;
+            font-size: 2.4rem;
+            font-weight: 500;
+            background: linear-gradient(90deg,var(--red),var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        /* Audio bar */
+        .audio-bar {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px
+        }
+
+        .play-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--red);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            color: #fff;
+            flex-shrink: 0;
+            transition: .15s
+        }
+
+            .play-btn:disabled {
+                background: var(--s3);
+                cursor: not-allowed
+            }
+
+            .play-btn.playing {
+                background: #c0203a
+            }
+
+        .audio-meta {
+            flex: 1;
+            min-width: 0
+        }
+
+        .audio-title {
+            font-size: .8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .audio-artist {
+            font-size: .68rem;
+            color: var(--muted2)
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: var(--s3);
+            border-radius: 6px;
+            cursor: pointer;
+            overflow: hidden;
+            margin-top: 5px
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--red);
+            width: 0%;
+            pointer-events: none;
+            transition: width .2s linear
+        }
+
+        .time-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: .6rem;
+            color: var(--muted);
+            font-family: 'DM Mono',monospace;
+            margin-top: 2px
+        }
+
+        .listener-bar {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .listener-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0
+        }
+
+        .listener-song {
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--muted2)
+        }
+
+        .listener-hint {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: 2px
+        }
+
+        .listener-wave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-right: auto;
+            flex-shrink: 0
+        }
+
+            .listener-wave span {
+                display: block;
+                width: 3px;
+                background: var(--red);
+                border-radius: 3px;
+                animation: wave 1s ease-in-out infinite
+            }
+
+                .listener-wave span:nth-child(1) {
+                    height: 8px;
+                    animation-delay: 0s
+                }
+
+                .listener-wave span:nth-child(2) {
+                    height: 14px;
+                    animation-delay: .15s
+                }
+
+                .listener-wave span:nth-child(3) {
+                    height: 10px;
+                    animation-delay: .3s
+                }
+
+                .listener-wave span:nth-child(4) {
+                    height: 16px;
+                    animation-delay: .1s
+                }
+
+        @keyframes wave {
+            0%,100% {
+                transform: scaleY(1)
+            }
+
+            50% {
+                transform: scaleY(.4)
+            }
+        }
+
+        /* Timeline */
+        .tl-wrap {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px
+        }
+
+        .section-title {
+            font-size: .7rem;
+            color: var(--muted2);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px
+        }
+
+        .tl-scroll {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
+            position: relative
+        }
+
+            .tl-scroll::-webkit-scrollbar {
+                display: none
+            }
+
+        .tl-drop {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            min-height: 80px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: .15s
+        }
+
+        .tl-drop-inner {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,64,96,.1);
+            border: 1.5px dashed var(--red);
+            color: var(--red);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .15s;
+            flex-shrink: 0
+        }
+
+        .tl-drop:hover .tl-drop-inner, .tl-drop.highlight .tl-drop-inner {
+            background: var(--red);
+            color: #fff;
+            border-style: solid;
+            transform: scale(1.15)
+        }
+
+        .tl-drop-year {
+            font-family: 'DM Mono',monospace;
+            font-size: .62rem;
+            color: var(--red);
+            margin-top: 3px;
+            opacity: .7
+        }
+
+        .tl-card {
+            flex: 0 0 auto;
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            width: 80px;
+            padding: 8px;
+            text-align: center;
+            margin: 0 2px
+        }
+
+        .tl-y {
+            font-family: 'DM Mono',monospace;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--red)
+        }
+
+        .tl-t {
+            font-size: .6rem;
+            font-weight: 700;
+            margin-top: 3px;
+            line-height: 1.2;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical
+        }
+
+        .tl-a {
+            font-size: .56rem;
+            color: var(--muted2)
+        }
+
+        .tl-drop.selected .tl-drop-inner {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #000;
+            box-shadow: 0 0 10px rgba(255,201,64,.5)
+        }
+
+        .place-confirm {
+            background: rgba(255,64,96,.08);
+            border: 1px solid rgba(255,64,96,.3);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px
+        }
+
+            .place-confirm.show {
+                display: flex
+            }
+
+        .place-label {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--red)
+        }
+
+            .place-label span {
+                color: var(--text)
+            }
+
+        .btn-place {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 10px;
+            background: var(--red);
+            color: #fff;
+            font-family: 'Heebo',sans-serif;
+            font-size: .85rem;
+            font-weight: 900;
+            cursor: pointer;
+            white-space: nowrap
+        }
+
+        /* Guess bar */
+        .guess-bar {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 12px 14px;
+            margin-bottom: 12px
+        }
+
+        .guess-bar-title {
+            font-size: .7rem;
+            color: var(--muted2);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px
+        }
+
+        .guess-inputs-row {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+            .guess-inputs-row input {
+                flex: 1;
+                padding: 9px 12px;
+                background: var(--s2);
+                border: 1.5px solid var(--border);
+                border-radius: 10px;
+                color: var(--text);
+                font-family: 'Heebo',sans-serif;
+                font-size: .85rem;
+                outline: none;
+                min-width: 0;
+                transition: .15s
+            }
+
+                .guess-inputs-row input:focus {
+                    border-color: var(--red)
+                }
+
+            .guess-inputs-row .btn {
+                flex: 0 0 auto;
+                width: auto;
+                padding: 9px 14px;
+                font-size: .82rem;
+                margin-top: 0;
+                border-radius: 10px
+            }
+
+        .guess-submitted-msg {
+            font-size: .78rem;
+            color: var(--gold);
+            margin-top: 8px;
+            text-align: center
+        }
+
+        /* Token actions */
+        .token-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        .btn-tok {
+            flex: 1;
+            padding: 9px;
+            border: 1.5px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Heebo',sans-serif;
+            font-size: .8rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .15s
+        }
+
+            .btn-tok:disabled {
+                opacity: .35;
+                cursor: not-allowed
+            }
+
+            .btn-tok:not(:disabled):hover {
+                background: var(--gold);
+                color: #000
+            }
+
+        /* Result */
+        .result-box {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            text-align: center;
+            display: none
+        }
+
+            .result-box.show {
+                display: block
+            }
+
+        .res-status {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 6px
+        }
+
+            .res-status.ok {
+                color: var(--green)
+            }
+
+            .res-status.fail {
+                color: var(--red)
+            }
+
+        .res-tokens {
+            font-size: .82rem;
+            color: var(--muted2);
+            margin-bottom: 14px;
+            line-height: 1.8;
+            white-space: pre-line
+        }
+
+        .guess-winner {
+            color: var(--gold);
+            font-weight: 700
+        }
+
+        .guess-partial {
+            color: var(--blue);
+            font-weight: 700
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: .85rem;
+            transition: .3s;
+            z-index: 999;
+            white-space: nowrap;
+            pointer-events: none
+        }
+
+            .toast.show {
+                transform: translateX(-50%) translateY(0)
+            }
+
+        /* Finish */
+        .finish-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            text-align: center;
+            padding: 24px
+        }
+
+        .finish-trophy {
+            font-size: 3.5rem;
+            animation: bob 2s ease-in-out infinite
+        }
+
+        .finish-winner {
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 900;
+            margin: 10px 0 20px
+        }
+
+        .finish-row {
+            font-size: .9rem;
+            color: var(--muted2);
+            margin: 3px 0
+        }
+
+            .finish-row span {
+                color: var(--text)
+            }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            flex-direction: column;
+            gap: 12px
+        }
+
+            .loading-overlay.hidden {
+                display: none
+            }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--red);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .loading-text {
+            color: var(--muted2);
+            font-size: .85rem
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text" id="loadingText">מחפש שיר...</div>
+    </div>
+
+    <!-- LOBBY -->
+    <div id="lobbyScreen" class="screen active">
+        <div class="logo">
+            <span class="logo-emoji">🔥</span>
+            <span class="logo-name">Hit-La-Hev</span>
+            <span class="logo-tag">בנה את ציר הזמן המוזיקלי</span>
+        </div>
+        <div class="card">
+            <div class="tabs">
+                <button class="tab on" id="tabCreate" onclick="switchTab('create')">צור חדר</button>
+                <button class="tab" id="tabJoin" onclick="switchTab('join')">הצטרף</button>
+            </div>
+            <div id="createForm">
+                <div class="field"><label>שם שחקן</label><input type="text" id="createName" placeholder="הכנס שמך" maxlength="20" autocomplete="off"></div>
+                <div class="field">
+                    <label>ז'אנר</label>
+                    <select id="createGenre">
+                        <option value="all">🎶 הכול</option>
+                        <option value="hits">🔥 הכי גדולים</option>
+                        <option value="pop">🎤 פופ</option>
+                        <option value="rock">🎸 רוק</option>
+                        <option value="mizrahi">🌙 מזרחי</option>
+                        <option value="hiphop">🎤 היפ הופ / ראפ</option>
+                        <option value="electronic">🎛️ אלקטרוני</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>מטרה לניצחון — קלפים בציר</label>
+                    <div class="win-row" id="winOpts">
+                        <button class="win-opt" onclick="setWin(6)">6</button>
+                        <button class="win-opt on" onclick="setWin(8)">8</button>
+                        <button class="win-opt" onclick="setWin(10)">10</button>
+                        <button class="win-opt" onclick="setWin(12)">12</button>
+                    </div>
+                </div>
+                <button class="btn" onclick="createRoom()">🎮 צור חדר</button>
+                <div id="createError" class="err"></div>
+            </div>
+            <div id="joinForm" style="display:none">
+                <div class="field"><label>שם שחקן</label><input type="text" id="joinName" placeholder="הכנס שמך" maxlength="20" autocomplete="off"></div>
+                <div class="field">
+                    <label>קוד חדר</label>
+                    <input type="text" id="joinCode" placeholder="ABCD" maxlength="4" style="text-transform:uppercase;letter-spacing:6px;" autocomplete="off">
+                </div>
+                <button class="btn" onclick="joinRoom()">🚪 הצטרף</button>
+                <div id="joinError" class="err"></div>
+            </div>
+            <a href="admin-songs.html" style="display:block;text-align:center;margin-top:14px;font-size:.72rem;color:var(--muted);text-decoration:none;">⚙️ ניהול שירים</a>
+        </div>
+    </div>
+
+    <!-- WAIT -->
+    <div id="waitScreen" class="screen">
+        <div class="wait-box">
+            <div class="code-display">
+                <div class="code-label">קוד חדר — שתף עם חברים</div>
+                <div class="code-big" id="displayCode">----</div>
+                <div class="code-copy" onclick="copyCode()">📋 לחץ להעתיק</div>
+            </div>
+            <div class="game-info-pill" id="gameInfoBadges"></div>
+            <div class="plist-title">שחקנים</div>
+            <div class="chips" id="waitChips"></div>
+            <div id="hostControls">
+                <button class="btn" id="startBtn" onclick="startGame()" disabled>🎵 התחל משחק</button>
+            </div>
+            <div id="guestWait" style="display:none" class="err">⏳ ממתין למארח...</div>
+            <button class="btn ghost" onclick="leaveRoom()">← עזוב</button>
+        </div>
+    </div>
+
+    <!-- GAME -->
+    <div id="gameScreen" class="screen">
+        <div class="game-wrap">
+            <div class="gh">
+                <div class="room-pill" id="gameCode">----</div>
+                <div class="win-target-pill" id="winTargetPill">🎯 —</div>
+                <button class="btn small ghost" onclick="leaveRoom()">יציאה</button>
+            </div>
+            <div class="scores" id="scores"></div>
+            <div class="win-progress" id="winProgressBar">
+                <div class="win-progress-label" id="winProgressLabel">התקדמות לניצחון</div>
+                <div class="win-progress-bar"><div class="win-progress-fill" id="winProgressFill"></div></div>
+            </div>
+            <div class="banner" id="banner">טוען...</div>
+
+            <!-- Flip card -->
+            <div class="song-card-wrap">
+                <div class="flip-wrap">
+                    <div class="flip-inner" id="flipCard">
+                        <div class="face face-front">
+                            <div class="fn">🔥</div>
+                            <div class="ft">האזן לשיר<br>מתי הוא יצא?</div>
+                        </div>
+                        <div class="face face-back">
+                            <div class="fb-info">
+                                <div class="fb-t" id="fbTitle">—</div>
+                                <div class="fb-a" id="fbArtist">—</div>
+                            </div>
+                            <div class="fb-y" id="fbYear">—</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active player audio bar -->
+            <div class="audio-bar" id="audioBar">
+                <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+                <div class="audio-meta">
+                    <div class="audio-title" id="audioTitle">מחפש שיר...</div>
+                    <div class="audio-artist" id="audioArtist">—</div>
+                    <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="time-labels"><span id="tCur">0:00</span><span id="tDur">0:30</span></div>
+                </div>
+            </div>
+
+            <!-- Non-turn listener compact bar -->
+            <div class="listener-bar" id="listenerBar" style="display:none">
+                <div class="listener-icon">🎧</div>
+                <div class="listener-info">
+                    <div class="listener-song" id="listenerSong">— שיר מוסתר —</div>
+                    <div class="listener-hint">נחש את האמן והשיר למטה</div>
+                </div>
+                <div class="listener-wave" id="listenerWave">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="tl-wrap" id="tlWrap">
+                <div class="section-title" id="tlTitle">ציר הזמן</div>
+                <div class="tl-scroll" id="tlContainer"></div>
+            </div>
+
+            <!-- Placement confirm bar (my turn only) -->
+            <div class="place-confirm" id="placeConfirm">
+                <div class="place-label">מקם ב: <span id="placeYearLabel">—</span></div>
+                <button class="btn-place" onclick="confirmPlace()">✓ אשר מיקום</button>
+            </div>
+
+            <!-- Token actions (my turn only) -->
+            <div class="token-row" id="tokenRow" style="display:none">
+                <button class="btn-tok" id="btnSwap" onclick="useToken('swap')">🔄 החלף (1🪙)</button>
+                <button class="btn-tok" id="btnBuy" onclick="useToken('buy')">🎁 בטוח (3🪙)</button>
+            </div>
+
+            <!-- Guess bar (everyone) -->
+            <div class="guess-bar" id="guessBar">
+                <div class="guess-bar-title">🎯 נחש אמן ושם שיר — תרוויח מטבעות!</div>
+                <div class="guess-inputs-row">
+                    <input type="text" id="guessArtist" placeholder="שם האמן" autocomplete="off">
+                    <input type="text" id="guessTitle" placeholder="שם השיר" autocomplete="off">
+                    <button class="btn" id="submitGuessBtn" onclick="submitGuess()">✓</button>
+                </div>
+                <div class="guess-submitted-msg" id="guessSubmittedMsg" style="display:none">✅ הניחוש נשלח! נראה אם צדקת... 🤞</div>
+            </div>
+
+            <!-- Result -->
+            <div class="result-box" id="resultBox">
+                <div class="res-status" id="resStatus"></div>
+                <div class="res-tokens" id="resTokens"></div>
+                <button class="btn" id="nextBtn" onclick="nextTurn()" style="display:none">התור הבא ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, set, get, update, onValue, off, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        const FB = {
+            apiKey: "AIzaSyA7iZnnBEMkUIZa51a0U2r1_hos8_wFpBI",
+            authDomain: "hitster-4f630.firebaseapp.com",
+            databaseURL: "https://hitster-4f630-default-rtdb.europe-west1.firebasedatabase.app/",
+            projectId: "hitster-4f630",
+            storageBucket: "hitster-4f630.firebasestorage.app",
+            messagingSenderId: "379018170989",
+            appId: "1:379018170989:web:908cd2658bc342af272564"
+        };
+        const db = getDatabase(initializeApp(FB));
+
+        // ── STATE ──
+        let myId = 'p_' + Math.random().toString(36).slice(2, 8);
+        let myName = '', roomCode = '', isHost = false;
+        let roomRef = null, roomUnsub = null;
+        let audioEl = null, currentTurnState = '', activePlayerId = '';
+        let selectedDropIndex = null;
+        let selectedWin = 8;
+
+        // ── FUZZY MATCHING (Levenshtein + normalize) ──
+        function levenshtein(a, b) {
+            const m = a.length, n = b.length;
+            const dp = Array.from({ length: m + 1 }, (_, i) => Array.from({ length: n + 1 }, (_, j) => i === 0 ? j : j === 0 ? i : 0));
+            for (let i = 1; i <= m; i++)
+                for (let j = 1; j <= n; j++)
+                    dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+            return dp[m][n];
+        }
+
+        // Normalize: lowercase, strip punctuation, strip niqqud (Hebrew diacritics), collapse spaces
+        function norm(s) {
+            if (!s) return '';
+            return s.trim()
+                .toLowerCase()
+                // strip Hebrew niqqud / cantillation
+                .replace(/[\u0591-\u05C7]/g, '')
+                // strip common punctuation
+                .replace(/['".,\-!?()]/g, '')
+                // collapse whitespace
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        // Fuzzy match: returns true if strings are similar enough
+        // threshold: allow up to ~20% error rate, min 1 for short strings
+        function fuzzyMatch(guess, answer) {
+            const g = norm(guess);
+            const a = norm(answer);
+            if (!g || !a) return false;
+            // Exact match
+            if (g === a) return true;
+            // One contains the other (handles partial input)
+            if (a.includes(g) || g.includes(a)) return true;
+            // Levenshtein distance based on length
+            const maxLen = Math.max(g.length, a.length);
+            const threshold = Math.max(1, Math.floor(maxLen * 0.25));
+            return levenshtein(g, a) <= threshold;
+        }
+
+        // Score a guess: 1 = full match, 0.5 = partial (one of two fields), 0 = no match
+        function scoreGuess(guess, song) {
+            const titleMatch = fuzzyMatch(guess.tGuess, song.title);
+            const artistMatch = fuzzyMatch(guess.aGuess, song.artist);
+            let score = 0;
+            if (titleMatch) score += 0.5;
+            if (artistMatch) score += 0.5;
+            return { score, titleMatch, artistMatch };
+        }
+
+        // ── HELPERS ──
+        window.switchTab = t => {
+            document.getElementById('createForm').style.display = t === 'create' ? 'block' : 'none';
+            document.getElementById('joinForm').style.display = t === 'join' ? 'block' : 'none';
+            document.getElementById('tabCreate').classList.toggle('on', t === 'create');
+            document.getElementById('tabJoin').classList.toggle('on', t === 'join');
+        };
+
+        window.setWin = (n) => {
+            selectedWin = n;
+            document.querySelectorAll('.win-opt').forEach(b => {
+                b.classList.toggle('on', parseInt(b.textContent) === n);
+            });
+        };
+
+        function toast(msg, dur = 2500) {
+            const el = document.getElementById('toast');
+            el.textContent = msg; el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), dur);
+        }
+        function screen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+        function showLoading(msg = 'מחפש שיר...') {
+            document.getElementById('loadingText').textContent = msg;
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+        function hideLoading() { document.getElementById('loadingOverlay').classList.add('hidden'); }
+        function shuffle(a) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]] } return b }
+        window.copyCode = () => { navigator.clipboard.writeText(roomCode).catch(() => { }); toast('הועתק! 📋'); };
+
+        // ── AUDIO SEARCH — with strict validation ──
+        // Returns a track ONLY if both artist and title match what we expect.
+        // This prevents iTunes from returning a completely wrong song.
+        async function searchMusic(title, artist, titleSearch, artistSearch) {
+            // The "canonical" names we'll validate against (prefer English search terms)
+            const expectTitle = (titleSearch || title).toLowerCase();
+            const expectArtist = (artistSearch || artist).toLowerCase();
+
+            // Query strategies — most specific first
+            const queries = [];
+            if (titleSearch && artistSearch) queries.push(`${titleSearch} ${artistSearch}`);
+            if (titleSearch && artistSearch) queries.push(`${artistSearch} ${titleSearch}`);
+            if (titleSearch) queries.push(titleSearch);
+            if (artistSearch) queries.push(artistSearch);
+            // Hebrew fallbacks
+            queries.push(`${title} ${artist}`);
+            queries.push(title);
+
+            for (const q of queries) {
+                let results;
+                try {
+                    const r = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=song&limit=15&country=IL`);
+                    const d = await r.json();
+                    results = d.results || [];
+                } catch (e) { continue; }
+
+                // Only consider tracks with a preview URL
+                const candidates = results.filter(x => x.previewUrl);
+
+                // Try to find one where BOTH artist AND title match our expected values
+                let match = candidates.find(x => {
+                    const itArtist = (x.artistName || '').toLowerCase();
+                    const itTitle = (x.trackName || '').toLowerCase();
+                    // Artist: expected string appears in iTunes artist name or vice-versa
+                    const artistOk = itArtist.includes(expectArtist) || expectArtist.includes(itArtist) ||
+                        levenshtein(itArtist, expectArtist) <= Math.max(2, Math.floor(expectArtist.length * 0.25));
+                    // Title: same fuzzy check
+                    const titleOk = itTitle.includes(expectTitle) || expectTitle.includes(itTitle) ||
+                        levenshtein(itTitle, expectTitle) <= Math.max(2, Math.floor(expectTitle.length * 0.3));
+                    return artistOk && titleOk;
+                });
+
+                // If strict both-field match not found, try artist-only match as fallback
+                if (!match) {
+                    match = candidates.find(x => {
+                        const itArtist = (x.artistName || '').toLowerCase();
+                        return itArtist.includes(expectArtist) || expectArtist.includes(itArtist) ||
+                            levenshtein(itArtist, expectArtist) <= Math.max(2, Math.floor(expectArtist.length * 0.25));
+                    });
+                }
+
+                if (match) return { preview_url: match.previewUrl, verifiedTitle: match.trackName, verifiedArtist: match.artistName };
+            }
+            return null; // No verified match found — song will be skipped
+        }
+
+        function stopAudio() {
+            if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
+            const b = document.getElementById('playBtn');
+            if (b) { b.textContent = '▶'; b.classList.remove('playing'); }
+            const pf = document.getElementById('progressFill');
+            if (pf) pf.style.width = '0%';
+        }
+
+        function loadAudio(url, autoplay = true) {
+            stopAudio();
+            audioEl = new Audio(url);
+            audioEl.crossOrigin = 'anonymous';
+            audioEl.addEventListener('timeupdate', () => {
+                if (!audioEl.duration) return;
+                const pct = (audioEl.currentTime / audioEl.duration) * 100;
+                document.getElementById('progressFill').style.width = pct + '%';
+                const cur = audioEl.currentTime;
+                document.getElementById('tCur').textContent = `${Math.floor(cur / 60)}:${String(Math.floor(cur % 60)).padStart(2, '0')}`;
+            });
+            audioEl.addEventListener('ended', () => {
+                document.getElementById('playBtn').textContent = '▶';
+                document.getElementById('playBtn').classList.remove('playing');
+                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPaused: true, audioTs: Date.now() });
+            });
+            if (autoplay) {
+                audioEl.play().catch(() => { });
+                document.getElementById('playBtn').textContent = '⏸';
+                document.getElementById('playBtn').classList.add('playing');
+            }
+        }
+
+        window.togglePlay = () => {
+            if (activePlayerId && activePlayerId !== myId) { toast('רק שחקן התור שולט על הנגינה'); return; }
+            if (!audioEl) return;
+            const playing = !audioEl.paused;
+            if (playing) {
+                audioEl.pause();
+                document.getElementById('playBtn').textContent = '▶';
+                document.getElementById('playBtn').classList.remove('playing');
+                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: audioEl.currentTime, audioPaused: true, audioTs: Date.now() });
+            } else {
+                audioEl.play().catch(() => { });
+                document.getElementById('playBtn').textContent = '⏸';
+                document.getElementById('playBtn').classList.add('playing');
+                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: audioEl.currentTime, audioPaused: false, audioTs: Date.now() });
+            }
+        };
+
+        window.seekAudio = e => {
+            if (activePlayerId && activePlayerId !== myId) return;
+            if (!audioEl || !audioEl.duration) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = ((e.clientX - rect.left) / rect.width) * audioEl.duration;
+            audioEl.currentTime = pos;
+            if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: pos, audioPaused: audioEl.paused, audioTs: Date.now() });
+        };
+
+        function syncAudioFromRoom(room) {
+            if (activePlayerId === myId) return;
+            if (!audioEl || !room.audioTs) return;
+            const elapsed = (Date.now() - room.audioTs) / 1000;
+            const target = (room.audioPos || 0) + (room.audioPaused ? 0 : elapsed);
+            if (Math.abs(audioEl.currentTime - target) > 1.5) audioEl.currentTime = Math.min(target, audioEl.duration || 30);
+            if (room.audioPaused && !audioEl.paused) { audioEl.pause(); document.getElementById('playBtn').textContent = '▶'; document.getElementById('playBtn').classList.remove('playing'); }
+            if (!room.audioPaused && audioEl.paused) { audioEl.play().catch(() => { }); document.getElementById('playBtn').textContent = '⏸'; document.getElementById('playBtn').classList.add('playing'); }
+        }
+
+        // ── ROOM ──
+        window.createRoom = async () => {
+            const name = document.getElementById('createName').value.trim();
+            if (!name) { document.getElementById('createError').textContent = 'הכנס שם'; return; }
+            myName = name; isHost = true;
+            showLoading('טוען שירים...');
+            roomCode = Math.random().toString(36).slice(2, 6).toUpperCase();
+            const g = document.getElementById('createGenre').value;
+
+            const snap = await get(ref(db, 'songs'));
+            if (!snap.exists()) { hideLoading(); document.getElementById('createError').textContent = '❌ אין שירים בדאטאבייס. הוסף שירים בעמוד הניהול.'; return; }
+            let songs = Object.entries(snap.val()).map(([id, s]) => ({ dbId: id, ...s }));
+            if (g !== 'all') songs = songs.filter(s => s.genre === g);
+            songs = shuffle(songs);
+            if (songs.length < 5) { hideLoading(); document.getElementById('createError').textContent = '❌ אין מספיק שירים בדאטאבייס.'; return; }
+
+            await set(ref(db, `rooms/${roomCode}`), {
+                host: myId, status: 'waiting', genre: g,
+                songs: songs.map(s => ({ dbId: s.dbId, title: s.title, artist: s.artist, year: s.year, genre: s.genre, titleSearch: s.titleSearch || s.title, artistSearch: s.artistSearch || s.artist })),
+                songIndex: 0, turnIndex: 0, winTarget: selectedWin,
+                playedSongs: {},
+                players: { [myId]: { name, score: 1, tokens: 0, isHost: true } }
+            });
+            hideLoading();
+            listenRoom(); screen('waitScreen');
+            document.getElementById('displayCode').textContent = roomCode;
+        };
+
+        window.joinRoom = async () => {
+            const name = document.getElementById('joinName').value.trim();
+            const code = document.getElementById('joinCode').value.trim().toUpperCase();
+            if (!name || !code) return;
+            const snap = await get(ref(db, `rooms/${code}`));
+            if (!snap.exists() || snap.val().status !== 'waiting') { document.getElementById('joinError').textContent = 'חדר לא פנוי'; return; }
+            myName = name; isHost = false; roomCode = code;
+            await update(ref(db, `rooms/${code}/players/${myId}`), { name, score: 1, tokens: 0, isHost: false });
+            listenRoom(); screen('waitScreen');
+            document.getElementById('displayCode').textContent = roomCode;
+        };
+
+        function listenRoom() {
+            if (roomUnsub) { off(roomRef); }
+            roomRef = ref(db, `rooms/${roomCode}`);
+            roomUnsub = onValue(roomRef, snap => {
+                if (!snap.exists()) { screen('lobbyScreen'); return; }
+                handleRoom(snap.val());
+            });
+        }
+
+        async function fetchValidSong(code, songs, playedSongs, startIdx) {
+            let idx = startIdx;
+            while (idx < songs.length) {
+                const s = songs[idx];
+                if (!playedSongs[s.dbId]) {
+                    const track = await searchMusic(s.title, s.artist, s.titleSearch, s.artistSearch);
+                    if (track) {
+                        const updates = {};
+                        updates[`rooms/${code}/currentSong`] = { ...s, preview_url: track.preview_url };
+                        updates[`rooms/${code}/songIndex`] = idx + 1;
+                        updates[`rooms/${code}/playedSongs/${s.dbId}`] = true;
+                        updates[`rooms/${code}/turnState`] = 'guessing';
+                        updates[`rooms/${code}/guesses`] = null;
+                        updates[`rooms/${code}/audioPos`] = 0;
+                        updates[`rooms/${code}/audioPaused`] = false;
+                        updates[`rooms/${code}/audioTs`] = Date.now();
+                        await update(ref(db), updates);
+                        return true;
+                    }
+                }
+                idx++;
+            }
+            await update(ref(db, `rooms/${code}`), { status: 'finished' });
+            return false;
+        }
+
+        window.startGame = async () => {
+            showLoading('מתחיל משחק...');
+            const room = (await get(roomRef)).val();
+            const updates = {};
+            let si = 0;
+            const pids = Object.keys(room.players);
+
+            pids.forEach(pid => {
+                const starterSong = room.songs[si++];
+                updates[`rooms/${roomCode}/players/${pid}/timeline`] = [{ title: starterSong.title, artist: starterSong.artist, year: starterSong.year }];
+                updates[`rooms/${roomCode}/playedSongs/${starterSong.dbId}`] = true;
+            });
+            updates[`rooms/${roomCode}/songIndex`] = si;
+            updates[`rooms/${roomCode}/status`] = 'playing';
+            updates[`rooms/${roomCode}/turnIndex`] = 0;
+            updates[`rooms/${roomCode}/turnState`] = 'loading';
+            await update(ref(db), updates);
+
+            const room2 = (await get(roomRef)).val();
+            const found = await fetchValidSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
+            if (!found) { hideLoading(); toast('❌ לא נמצאו שירים נוספים'); }
+            hideLoading();
+        };
+
+        function handleRoom(room) {
+            const players = Object.entries(room.players || {}).map(([id, p]) => ({ id, ...p }));
+            if (room.status === 'waiting') {
+                document.getElementById('waitChips').innerHTML = players.map(p =>
+                    `<div class="chip${p.isHost ? ' host' : ''}">${p.isHost ? '👑 ' : ''}${p.name}</div>`
+                ).join('');
+                const winTarget = room.winTarget || 8;
+                const genreLabels = { all: 'הכול', hits: 'הכי גדולים', pop: 'פופ', rock: 'רוק', mizrahi: 'מזרחי', hiphop: 'היפ הופ', electronic: 'אלקטרוני' };
+                document.getElementById('gameInfoBadges').innerHTML = `
+                    <div class="info-badge">🎵 ז'אנר: <span>${genreLabels[room.genre] || room.genre}</span></div>
+                    <div class="info-badge">🎯 ניצחון: <span>${winTarget} קלפים</span></div>`;
+                if (isHost) document.getElementById('startBtn').disabled = players.length < 1;
+                document.getElementById('hostControls').style.display = isHost ? 'block' : 'none';
+                document.getElementById('guestWait').style.display = isHost ? 'none' : 'block';
+                return;
+            }
+            if (room.status === 'playing' || room.status === 'loading') {
+                if (!document.getElementById('gameScreen').classList.contains('active')) screen('gameScreen');
+                if (room.status === 'playing') renderGame(room, players);
+            }
+            if (room.status === 'finished') showFinish(players);
+        }
+
+        function renderGame(room, players) {
+            const ti = room.turnIndex || 0;
+            const pids = Object.keys(room.players);
+            activePlayerId = pids[ti % pids.length];
+            const isMyTurn = activePlayerId === myId;
+            const activePl = players.find(p => p.id === activePlayerId);
+            const me = players.find(p => p.id === myId);
+            const winTarget = room.winTarget || 8;
+
+            document.getElementById('gameCode').textContent = roomCode;
+            document.getElementById('winTargetPill').textContent = `🎯 ${winTarget} קלפים`;
+
+            const maxScore = Math.max(...players.map(p => p.score));
+            const pct = Math.min(100, (maxScore / winTarget) * 100);
+            document.getElementById('winProgressFill').style.width = pct + '%';
+            document.getElementById('winProgressLabel').textContent = `מוביל: ${maxScore} / ${winTarget} קלפים`;
+
+            document.getElementById('scores').innerHTML = [...players].sort((a, b) => b.score - a.score).map(p =>
+                `<div class="sc${p.id === activePlayerId ? ' active' : ''}${p.id === myId ? ' me' : ''}">
+                    <div class="sc-n">${p.name}</div>
+                    <div class="sc-p">${p.score}</div>
+                    <div class="sc-t">${p.tokens || 0}🪙</div>
+                </div>`
+            ).join('');
+
+            const banner = document.getElementById('banner');
+            if (isMyTurn) { banner.textContent = 'התור שלך! לחץ + בציר הזמן למיקום'; banner.className = 'banner'; }
+            else { banner.textContent = `התור של ${activePl?.name} — נחש ותרוויח!`; banner.className = 'banner other'; }
+
+            const audioBar = document.getElementById('audioBar');
+            const listenerBar = document.getElementById('listenerBar');
+            if (isMyTurn) {
+                audioBar.style.display = 'flex'; listenerBar.style.display = 'none';
+                document.getElementById('playBtn').disabled = false;
+            } else {
+                audioBar.style.display = 'none'; listenerBar.style.display = 'flex';
+                document.getElementById('listenerWave').style.display = (audioEl && !audioEl.paused) ? 'flex' : 'none';
+            }
+
+            const tl = activePl?.timeline || [];
+            let tlHtml = '';
+            if (isMyTurn && room.turnState === 'guessing') tlHtml += dropZone(0, tl);
+            tl.forEach((c, i) => {
+                tlHtml += `<div class="tl-card"><div class="tl-y">${c.year}</div><div class="tl-t">${c.title}</div><div class="tl-a">${c.artist}</div></div>`;
+                if (isMyTurn && room.turnState === 'guessing') tlHtml += dropZone(i + 1, tl);
+            });
+            document.getElementById('tlContainer').innerHTML = tlHtml;
+            document.getElementById('tlTitle').textContent = isMyTurn ? 'ציר הזמן שלך — לחץ + למיקום' : `ציר של ${activePl?.name}`;
+
+            document.getElementById('tokenRow').style.display = (isMyTurn && room.turnState === 'guessing') ? 'flex' : 'none';
+            if (isMyTurn) {
+                document.getElementById('btnSwap').disabled = (me?.tokens || 0) < 1;
+                document.getElementById('btnBuy').disabled = (me?.tokens || 0) < 3;
+            }
+
+            const guessBar = document.getElementById('guessBar');
+            const myGuess = room.guesses?.[myId];
+            if (room.turnState === 'guessing') {
+                guessBar.style.display = 'block';
+                const inputsRow = document.querySelector('.guess-inputs-row');
+                const submittedMsg = document.getElementById('guessSubmittedMsg');
+                if (myGuess) {
+                    inputsRow.style.display = 'none';
+                    submittedMsg.style.display = 'block';
+                } else {
+                    inputsRow.style.display = 'flex';
+                    submittedMsg.style.display = 'none';
+                    document.getElementById('submitGuessBtn').disabled = false;
+                }
+            } else {
+                guessBar.style.display = 'none';
+            }
+
+            if (room.turnState !== 'guessing') {
+                document.getElementById('placeConfirm').classList.remove('show');
+                selectedDropIndex = null;
+            }
+
+            if (room.turnState === 'guessing' && currentTurnState !== 'guessing') {
+                currentTurnState = 'guessing';
+                selectedDropIndex = null;
+                document.getElementById('placeConfirm').classList.remove('show');
+                document.getElementById('flipCard').classList.remove('flipped');
+                document.getElementById('resultBox').classList.remove('show');
+                document.getElementById('guessArtist').value = '';
+                document.getElementById('guessTitle').value = '';
+                document.getElementById('submitGuessBtn').disabled = false;
+                document.getElementById('guessSubmittedMsg').style.display = 'none';
+                document.querySelector('.guess-inputs-row').style.display = 'flex';
+                document.getElementById('audioTitle').textContent = '— שיר מוסתר —';
+                document.getElementById('audioArtist').textContent = '—';
+                document.getElementById('nextBtn').style.display = 'none';
+                if (room.currentSong?.preview_url) {
+                    loadAudio(room.currentSong.preview_url, isMyTurn);
+                }
+            }
+
+            if (room.turnState === 'revealed' && currentTurnState !== 'revealed') {
+                currentTurnState = 'revealed';
+                revealCard(room.currentSong, room.lastResult, room.players);
+                guessBar.style.display = 'none';
+                document.getElementById('tokenRow').style.display = 'none';
+                document.getElementById('placeConfirm').classList.remove('show');
+                if (isHost) {
+                    document.getElementById('nextBtn').style.display = 'block';
+                    const maxS = Math.max(...players.map(p => p.score));
+                    document.getElementById('nextBtn').textContent = maxS >= winTarget ? '🏁 סיים' : 'התור הבא ▶';
+                }
+            }
+
+            if (room.turnState === 'guessing' && !isMyTurn && audioEl) syncAudioFromRoom(room);
+        }
+
+        function dropZone(index, tl) {
+            const prevYear = index > 0 ? tl[index - 1].year : null;
+            const nextYear = index < tl.length ? tl[index].year : null;
+            let yearHint = '';
+            if (prevYear && nextYear) yearHint = `${prevYear}–${nextYear}`;
+            else if (prevYear) yearHint = `אחרי ${prevYear}`;
+            else if (nextYear) yearHint = `לפני ${nextYear}`;
+            else yearHint = 'כאן';
+            const isSelected = selectedDropIndex === index;
+            return `<div class="tl-drop${isSelected ? ' selected' : ''}" onclick="selectDrop(${index},'${yearHint}')">
+                <div class="tl-drop-inner">+</div>
+                <div class="tl-drop-year">${yearHint}</div>
+            </div>`;
+        }
+
+        window.selectDrop = (index, label) => {
+            selectedDropIndex = index;
+            document.querySelectorAll('.tl-drop').forEach(d => {
+                const oc = d.getAttribute('onclick');
+                const match = oc && oc.match(/selectDrop\((\d+)/);
+                d.classList.toggle('selected', !!(match && parseInt(match[1]) === index));
+            });
+            document.getElementById('placeYearLabel').textContent = label;
+            document.getElementById('placeConfirm').classList.add('show');
+        };
+
+        window.confirmPlace = async () => {
+            if (selectedDropIndex === null) { toast('בחר מיקום קודם'); return; }
+            await placeSong(selectedDropIndex);
+            selectedDropIndex = null;
+            document.getElementById('placeConfirm').classList.remove('show');
+        };
+
+        window.placeSong = async (index) => {
+            const room = (await get(roomRef)).val();
+            const song = room.currentSong;
+            const tl = room.players[myId].timeline || [];
+            let valid = true;
+            if (index > 0 && tl[index - 1].year > song.year) valid = false;
+            if (index < tl.length && tl[index].year < song.year) valid = false;
+            await processTurn(valid, index, room);
+        };
+
+        window.useToken = async (type) => {
+            const room = (await get(roomRef)).val();
+            const tokens = room.players[myId].tokens || 0;
+            if (type === 'swap' && tokens >= 1) {
+                await update(ref(db, `rooms/${roomCode}/players/${myId}`), { tokens: tokens - 1 });
+                stopAudio(); currentTurnState = '';
+                showLoading('מחפש שיר חלופי...');
+                await fetchValidSong(roomCode, room.songs, room.playedSongs || {}, room.songIndex);
+                hideLoading();
+            } else if (type === 'buy' && tokens >= 3) {
+                await update(ref(db, `rooms/${roomCode}/players/${myId}`), { tokens: tokens - 3 });
+                const tl = room.players[myId].timeline || [];
+                const ci = tl.findIndex(c => c.year > room.currentSong.year);
+                await processTurn(true, ci === -1 ? tl.length : ci, room);
+            }
+        };
+
+        async function processTurn(isValid, insertIndex, room) {
+            const song = room.currentSong;
+            const winTarget = room.winTarget || 8;
+            const updates = {};
+            if (isValid) {
+                const tl = [...(room.players[activePlayerId].timeline || [])];
+                tl.splice(insertIndex, 0, { title: song.title, artist: song.artist, year: song.year });
+                updates[`rooms/${roomCode}/players/${activePlayerId}/timeline`] = tl;
+                updates[`rooms/${roomCode}/players/${activePlayerId}/score`] = tl.length;
+            }
+
+            const guesses = room.guesses || {};
+            const tokenResults = [];
+
+            Object.keys(room.players).forEach(pid => {
+                const g = guesses[pid]; if (!g) return;
+                const result = scoreGuess(g, song);
+                if (result.score > 0) {
+                    const newTokens = (room.players[pid].tokens || 0) + result.score;
+                    updates[`rooms/${roomCode}/players/${pid}/tokens`] = newTokens;
+                    tokenResults.push({
+                        name: room.players[pid].name,
+                        score: result.score,
+                        titleMatch: result.titleMatch,
+                        artistMatch: result.artistMatch,
+                        aGuess: g.aGuess,
+                        tGuess: g.tGuess
+                    });
+                }
+            });
+
+            updates[`rooms/${roomCode}/lastResult`] = {
+                success: isValid,
+                tokenResults: tokenResults,
+                song: { title: song.title, artist: song.artist }
+            };
+            updates[`rooms/${roomCode}/turnState`] = 'revealed';
+            await update(ref(db), updates);
+        }
+
+        function revealCard(song, res, playersMap) {
+            document.getElementById('flipCard').classList.add('flipped');
+            document.getElementById('fbTitle').textContent = song.title;
+            document.getElementById('fbArtist').textContent = song.artist;
+            document.getElementById('fbYear').textContent = song.year;
+            document.getElementById('audioTitle').textContent = song.title;
+            document.getElementById('audioArtist').textContent = song.artist;
+
+            const st = document.getElementById('resStatus');
+            if (res.success) { st.textContent = '✅ שיבוץ מוצלח!'; st.className = 'res-status ok'; }
+            else { st.textContent = '❌ שגיאה בציר הזמן!'; st.className = 'res-status fail'; }
+
+            // Build token result display
+            const tokenResults = res.tokenResults || [];
+            let html = '';
+            if (tokenResults.length === 0) {
+                html = '<span style="color:var(--muted)">אף אחד לא ניחש נכון 😅</span>';
+            } else {
+                tokenResults.forEach(r => {
+                    const parts = [];
+                    if (r.titleMatch) parts.push(`שם שיר ✓`);
+                    if (r.artistMatch) parts.push(`אמן ✓`);
+                    const coins = r.score === 1 ? '🪙🪙' : '🪙';
+                    const cls = r.score === 1 ? 'guess-winner' : 'guess-partial';
+                    html += `<div><span class="${cls}">${r.name}</span> ניחש: ${parts.join(' + ')} → ${coins} +${r.score}</div>`;
+                });
+            }
+            document.getElementById('resTokens').innerHTML = html;
+            document.getElementById('resultBox').classList.add('show');
+        }
+
+        window.nextTurn = async () => {
+            const room = (await get(roomRef)).val();
+            const winTarget = room.winTarget || 8;
+            const maxScore = Math.max(...Object.values(room.players).map(p => p.score));
+            if (maxScore >= winTarget) {
+                await update(ref(db, `rooms/${roomCode}`), { status: 'finished' });
+            } else {
+                currentTurnState = '';
+                stopAudio();
+                await update(ref(db, `rooms/${roomCode}`), { turnIndex: (room.turnIndex || 0) + 1 });
+                showLoading('מחפש שיר חדש...');
+                const room2 = (await get(roomRef)).val();
+                await fetchValidSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
+                hideLoading();
+            }
+        };
+
+        window.submitGuess = async () => {
+            const a = document.getElementById('guessArtist').value.trim();
+            const t = document.getElementById('guessTitle').value.trim();
+            if (!a && !t) { toast('הכנס ניחוש!'); return; }
+            await update(ref(db, `rooms/${roomCode}/guesses/${myId}`), { aGuess: a, tGuess: t });
+            document.getElementById('submitGuessBtn').disabled = true;
+            // Show submitted stateד
+            document.querySelector('.guess-inputs-row').style.display = 'none';
+            document.getElementById('guessSubmittedMsg').style.display = 'block';
+            toast('ניחוש נשלח! 🤞');
+        };
+
+        function showFinish(players) {
+            stopAudio();
+            const sorted = [...players].sort((a, b) => b.score - a.score);
+            document.getElementById('gameScreen').innerHTML = `<div class="finish-screen">
+                <div class="finish-trophy">🏆</div>
+                <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
+                ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
+                <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
+            </div>`;
+        }
+
+        window.leaveRoom = () => location.reload();
+    </script>
+</body>
+</html>
