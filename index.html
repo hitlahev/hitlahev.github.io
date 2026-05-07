@@ -13,13 +13,13 @@
             --s3: #20202a;
             --border: rgba(255,255,255,0.08);
             --green: #00e676;
-            --red: #ff4060;
+            --red: #ff0000;
             --gold: #ffc940;
             --blue: #4d9fff;
             --text: #f0f0f0;
             --muted: #555;
             --muted2: #888;
-            --r: 16px;
+            --r: 16px
         }
 
         * {
@@ -55,12 +55,11 @@
                 display: flex
             }
 
-        /* LOBBY */
         #lobbyScreen {
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(255,64,96,.12) 0%, transparent 60%), var(--bg)
+            background: radial-gradient(ellipse 70% 50% at 50% -10%,rgba(255,0,0,.12) 0%,transparent 60%),var(--bg)
         }
 
         .logo {
@@ -88,7 +87,7 @@
             font-size: 2.6rem;
             font-weight: 900;
             letter-spacing: -2px;
-            background: linear-gradient(135deg, var(--red) 0%, var(--gold) 50%, #ff8c00 100%);
+            background: linear-gradient(135deg,var(--red) 0%,var(--gold) 50%,#ff8c00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block
@@ -208,15 +207,6 @@
                 color: var(--gold)
             }
 
-        .win-label {
-            font-size: .72rem;
-            color: var(--muted2);
-            margin-bottom: 6px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase
-        }
-
         .btn {
             width: 100%;
             padding: 13px;
@@ -233,8 +223,8 @@
         }
 
             .btn:hover:not(:disabled) {
-                background: #ff6070;
-                box-shadow: 0 6px 24px rgba(255,64,96,.35);
+                background: #ff4040;
+                box-shadow: 0 6px 24px rgba(255,0,0,.35);
                 transform: translateY(-1px)
             }
 
@@ -275,7 +265,18 @@
             min-height: 18px
         }
 
-        /* WAIT */
+        .lobby-footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: .72rem;
+            color: var(--muted);
+            letter-spacing: 1px
+        }
+
+            .lobby-footer strong {
+                color: var(--muted2)
+            }
+
         #waitScreen {
             align-items: center;
             justify-content: center;
@@ -297,7 +298,7 @@
             border-radius: 14px;
             padding: 16px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255,64,96,.2)
+            border: 1px solid rgba(255,0,0,.2)
         }
 
         .code-label {
@@ -378,7 +379,6 @@
                 font-weight: 700
             }
 
-        /* GAME */
         #gameScreen {
             padding: 0;
             justify-content: flex-start
@@ -447,8 +447,8 @@
         }
 
             .sc.me {
-                border-color: rgba(255,64,96,.4);
-                background: rgba(255,64,96,.06)
+                border-color: rgba(255,0,0,.4);
+                background: rgba(255,0,0,.06)
             }
 
             .sc.active {
@@ -500,14 +500,14 @@
 
         .win-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--red), var(--gold));
+            background: linear-gradient(90deg,var(--red),var(--gold));
             border-radius: 4px;
             transition: width .5s ease
         }
 
         .banner {
-            background: rgba(255,64,96,.08);
-            border: 1px solid rgba(255,64,96,.2);
+            background: rgba(255,0,0,.08);
+            border: 1px solid rgba(255,0,0,.2);
             border-radius: 12px;
             padding: 8px 14px;
             text-align: center;
@@ -523,7 +523,6 @@
                 color: var(--muted2)
             }
 
-        /* Flip card */
         .song-card-wrap {
             position: relative;
             width: 100%;
@@ -562,7 +561,7 @@
 
         .face-front {
             background: linear-gradient(135deg,#1a0808,#0a0a18);
-            border: 1.5px solid rgba(255,64,96,.2);
+            border: 1.5px solid rgba(255,0,0,.2);
             gap: 14px
         }
 
@@ -578,7 +577,7 @@
 
         .face-back {
             background: linear-gradient(135deg,#1a0a14,#200a20);
-            border: 1.5px solid rgba(255,64,96,.25);
+            border: 1.5px solid rgba(255,0,0,.25);
             transform: rotateY(180deg);
             justify-content: space-between
         }
@@ -607,7 +606,6 @@
             -webkit-text-fill-color: transparent
         }
 
-        /* Audio bar */
         .audio-bar {
             background: var(--s1);
             border: 1px solid var(--border);
@@ -668,7 +666,8 @@
             border-radius: 6px;
             cursor: pointer;
             overflow: hidden;
-            margin-top: 5px
+            margin-top: 5px;
+            position: relative;
         }
 
         .progress-fill {
@@ -762,7 +761,6 @@
             }
         }
 
-        /* Timeline */
         .tl-wrap {
             background: var(--s1);
             border: 1px solid var(--border);
@@ -812,7 +810,7 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: rgba(255,64,96,.1);
+            background: rgba(255,0,0,.1);
             border: 1.5px dashed var(--red);
             color: var(--red);
             font-size: 1rem;
@@ -880,8 +878,8 @@
         }
 
         .place-confirm {
-            background: rgba(255,64,96,.08);
-            border: 1px solid rgba(255,64,96,.3);
+            background: rgba(255,0,0,.08);
+            border: 1px solid rgba(255,0,0,.3);
             border-radius: 12px;
             padding: 12px 14px;
             margin-bottom: 12px;
@@ -918,7 +916,6 @@
             white-space: nowrap
         }
 
-        /* Guess bar */
         .guess-bar {
             background: var(--s1);
             border: 1px solid var(--border);
@@ -976,7 +973,6 @@
             text-align: center
         }
 
-        /* Token actions */
         .token-row {
             display: flex;
             gap: 8px;
@@ -1007,7 +1003,6 @@
                 color: #000
             }
 
-        /* Result */
         .result-box {
             background: var(--s1);
             border: 1px solid var(--border);
@@ -1054,7 +1049,6 @@
             font-weight: 700
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -1075,7 +1069,6 @@
                 transform: translateX(-50%) translateY(0)
             }
 
-        /* Finish */
         .finish-screen {
             display: flex;
             flex-direction: column;
@@ -1131,7 +1124,7 @@
             justify-content: center;
             z-index: 100;
             flex-direction: column;
-            gap: 12px
+            gap: 16px
         }
 
             .loading-overlay.hidden {
@@ -1139,8 +1132,8 @@
             }
 
         .spinner {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border: 3px solid var(--border);
             border-top-color: var(--red);
             border-radius: 50%;
@@ -1157,16 +1150,39 @@
             color: var(--muted2);
             font-size: .85rem
         }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4,end) infinite
+        }
+
+        @keyframes dots {
+            0%,100% {
+                content: ''
+            }
+
+            25% {
+                content: '.'
+            }
+
+            50% {
+                content: '..'
+            }
+
+            75% {
+                content: '...'
+            }
+        }
     </style>
 </head>
 <body>
+    <audio id="audioPlayer" preload="auto"></audio>
 
     <div class="loading-overlay hidden" id="loadingOverlay">
         <div class="spinner"></div>
-        <div class="loading-text" id="loadingText">מחפש שיר...</div>
+        <div class="loading-text loading-dots" id="loadingText">טוען</div>
     </div>
 
-    <!-- LOBBY -->
     <div id="lobbyScreen" class="screen active">
         <div class="logo">
             <span class="logo-emoji">🔥</span>
@@ -1213,11 +1229,10 @@
                 <button class="btn" onclick="joinRoom()">🚪 הצטרף</button>
                 <div id="joinError" class="err"></div>
             </div>
-            <a href="admin-songs.html" style="display:block;text-align:center;margin-top:14px;font-size:.72rem;color:var(--muted);text-decoration:none;">⚙️ ניהול שירים</a>
         </div>
+        <div class="lobby-footer">by <strong>Lev</strong> 🔥</div>
     </div>
 
-    <!-- WAIT -->
     <div id="waitScreen" class="screen">
         <div class="wait-box">
             <div class="code-display">
@@ -1236,7 +1251,6 @@
         </div>
     </div>
 
-    <!-- GAME -->
     <div id="gameScreen" class="screen">
         <div class="game-wrap">
             <div class="gh">
@@ -1245,13 +1259,11 @@
                 <button class="btn small ghost" onclick="leaveRoom()">יציאה</button>
             </div>
             <div class="scores" id="scores"></div>
-            <div class="win-progress" id="winProgressBar">
+            <div class="win-progress">
                 <div class="win-progress-label" id="winProgressLabel">התקדמות לניצחון</div>
                 <div class="win-progress-bar"><div class="win-progress-fill" id="winProgressFill"></div></div>
             </div>
             <div class="banner" id="banner">טוען...</div>
-
-            <!-- Flip card -->
             <div class="song-card-wrap">
                 <div class="flip-wrap">
                     <div class="flip-inner" id="flipCard">
@@ -1269,51 +1281,39 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Active player audio bar -->
             <div class="audio-bar" id="audioBar">
                 <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
                 <div class="audio-meta">
-                    <div class="audio-title" id="audioTitle">מחפש שיר...</div>
-                    <div class="audio-artist" id="audioArtist">—</div>
+                    <div class="audio-title" id="audioTitle">🎵 שיר לא ידוע</div>
+                    <div class="audio-artist" id="audioArtist">— נחש מי זה —</div>
                     <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
                     <div class="time-labels"><span id="tCur">0:00</span><span id="tDur">0:30</span></div>
                 </div>
             </div>
-
-            <!-- Non-turn listener compact bar -->
             <div class="listener-bar" id="listenerBar" style="display:none">
                 <div class="listener-icon">🎧</div>
                 <div class="listener-info">
-                    <div class="listener-song" id="listenerSong">— שיר מוסתר —</div>
+                    <div class="listener-song">— שיר מוסתר —</div>
                     <div class="listener-hint">נחש את האמן והשיר למטה</div>
                 </div>
                 <div class="listener-wave" id="listenerWave">
                     <span></span><span></span><span></span><span></span>
                 </div>
             </div>
-
-            <!-- Timeline -->
-            <div class="tl-wrap" id="tlWrap">
+            <div class="tl-wrap">
                 <div class="section-title" id="tlTitle">ציר הזמן</div>
                 <div class="tl-scroll" id="tlContainer"></div>
             </div>
-
-            <!-- Placement confirm bar (my turn only) -->
             <div class="place-confirm" id="placeConfirm">
                 <div class="place-label">מקם ב: <span id="placeYearLabel">—</span></div>
                 <button class="btn-place" onclick="confirmPlace()">✓ אשר מיקום</button>
             </div>
-
-            <!-- Token actions (my turn only) -->
             <div class="token-row" id="tokenRow" style="display:none">
                 <button class="btn-tok" id="btnSwap" onclick="useToken('swap')">🔄 החלף (1🪙)</button>
                 <button class="btn-tok" id="btnBuy" onclick="useToken('buy')">🎁 בטוח (3🪙)</button>
             </div>
-
-            <!-- Guess bar (everyone) -->
             <div class="guess-bar" id="guessBar">
                 <div class="guess-bar-title">🎯 נחש אמן ושם שיר — תרוויח מטבעות!</div>
                 <div class="guess-inputs-row">
@@ -1321,15 +1321,14 @@
                     <input type="text" id="guessTitle" placeholder="שם השיר" autocomplete="off">
                     <button class="btn" id="submitGuessBtn" onclick="submitGuess()">✓</button>
                 </div>
-                <div class="guess-submitted-msg" id="guessSubmittedMsg" style="display:none">✅ הניחוש נשלח! נראה אם צדקת... 🤞</div>
+                <div class="guess-submitted-msg" id="guessSubmittedMsg" style="display:none">✅ הניחוש נשלח! 🤞</div>
             </div>
-
-            <!-- Result -->
             <div class="result-box" id="resultBox">
                 <div class="res-status" id="resStatus"></div>
                 <div class="res-tokens" id="resTokens"></div>
                 <button class="btn" id="nextBtn" onclick="nextTurn()" style="display:none">התור הבא ▶</button>
             </div>
+            <div style="text-align:center;margin-top:8px;font-size:.65rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
         </div>
     </div>
 
@@ -1350,238 +1349,204 @@
         };
         const db = getDatabase(initializeApp(FB));
 
-        // ── STATE ──
         let myId = 'p_' + Math.random().toString(36).slice(2, 8);
         let myName = '', roomCode = '', isHost = false;
         let roomRef = null, roomUnsub = null;
-        let audioEl = null, currentTurnState = '', activePlayerId = '';
-        let selectedDropIndex = null;
-        let selectedWin = 8;
+        let currentTurnState = '', activePlayerId = '';
+        let selectedDropIndex = null, selectedWin = 8;
 
-        // ── FUZZY MATCHING (Levenshtein + normalize) ──
+        // הגדרת נגן האודיו של HTML5
+        const audioPlayer = document.getElementById('audioPlayer');
+        let audioProgressTimer = null;
+
+        audioPlayer.addEventListener('play', () => {
+            document.getElementById('playBtn').textContent = '⏸';
+            document.getElementById('playBtn').classList.add('playing');
+            startProgressTimer();
+        });
+
+        audioPlayer.addEventListener('pause', () => {
+            document.getElementById('playBtn').textContent = '▶';
+            document.getElementById('playBtn').classList.remove('playing');
+            stopProgressTimer();
+            if (roomCode && activePlayerId === myId) update(ref(db, `rooms/${roomCode}`), { audioPaused: true, audioTs: Date.now() });
+        });
+
+        audioPlayer.addEventListener('ended', () => {
+            document.getElementById('playBtn').textContent = '▶';
+            document.getElementById('playBtn').classList.remove('playing');
+            stopProgressTimer();
+            if (roomCode && activePlayerId === myId) update(ref(db, `rooms/${roomCode}`), { audioPaused: true, audioTs: Date.now() });
+        });
+
+        function stopAudio() {
+            audioPlayer.pause();
+            stopProgressTimer();
+            document.getElementById('playBtn').textContent = '▶';
+            document.getElementById('playBtn').classList.remove('playing');
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('tCur').textContent = '0:00';
+        }
+
+        function startProgressTimer() {
+            stopProgressTimer();
+            audioProgressTimer = setInterval(() => {
+                if (!audioPlayer.duration) return;
+                const cur = audioPlayer.currentTime;
+                const dur = 30; // 30 sec max
+                document.getElementById('progressFill').style.width = Math.min(100, (cur / dur * 100)) + '%';
+                document.getElementById('tCur').textContent = `0:${String(Math.floor(cur)).padStart(2, '0')}`;
+
+                if (cur >= dur) {
+                    audioPlayer.pause();
+                    if (roomCode && activePlayerId === myId) update(ref(db, `rooms/${roomCode}`), { audioPos: dur, audioPaused: true, audioTs: Date.now() });
+                }
+            }, 100);
+        }
+
+        function stopProgressTimer() {
+            if (audioProgressTimer) { clearInterval(audioProgressTimer); audioProgressTimer = null; }
+        }
+
+        function loadAudio(url, autoplay = true) {
+            stopAudio();
+            if (!url) {
+                document.getElementById('playBtn').disabled = true;
+                document.getElementById('audioTitle').textContent = '⚠️ שיר לא זמין';
+                return;
+            }
+            document.getElementById('playBtn').disabled = false;
+
+            audioPlayer.src = url;
+            audioPlayer.load();
+
+            if (autoplay) {
+                // מנסה לנגן אוטומטית. אם הדפדפן חוסם (בטלפון), השחקן פשוט ילחץ Play.
+                audioPlayer.play().catch(e => {
+                    console.log('Autoplay prevented. User needs to tap play.');
+                });
+            }
+        }
+
+        window.togglePlay = () => {
+            if (activePlayerId && activePlayerId !== myId) {
+                toast('רק שחקן התור שולט על הנגינה');
+                return;
+            }
+            if (!audioPlayer.src) {
+                toast('הנגן לא מוכן עדיין');
+                return;
+            }
+
+            if (!audioPlayer.paused) {
+                audioPlayer.pause();
+                if (roomCode) update(ref(db, `rooms/${roomCode}`), {
+                    audioPos: audioPlayer.currentTime,
+                    audioPaused: true,
+                    audioTs: Date.now()
+                });
+            } else {
+                audioPlayer.play().catch(e => toast('תקלה בהפעלה, נסה שוב'));
+                if (roomCode) update(ref(db, `rooms/${roomCode}`), {
+                    audioPos: audioPlayer.currentTime || 0,
+                    audioPaused: false,
+                    audioTs: Date.now()
+                });
+            }
+        };
+
+        window.seekAudio = e => {
+            if (activePlayerId && activePlayerId !== myId) return;
+            if (!audioPlayer.src) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const targetTime = ((e.clientX - rect.left) / rect.width) * 30; // 30 sec limit
+            audioPlayer.currentTime = targetTime;
+            if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: targetTime, audioPaused: false, audioTs: Date.now() });
+        };
+
+        function syncAudioFromRoom(room) {
+            if (activePlayerId === myId) return;
+            if (!audioPlayer.src || !room.audioTs) return;
+
+            const isPlaying = !audioPlayer.paused;
+            const elapsed = (Date.now() - room.audioTs) / 1000;
+            const target = (room.audioPos || 0) + (room.audioPaused ? 0 : elapsed);
+
+            if (Math.abs((audioPlayer.currentTime || 0) - target) > 1.5) {
+                audioPlayer.currentTime = Math.min(target, 30);
+            }
+
+            if (room.audioPaused && isPlaying) audioPlayer.pause();
+            if (!room.audioPaused && !isPlaying && target < 30) {
+                audioPlayer.play().catch(e => console.log('Sync autoplay prevented by browser'));
+            }
+        }
+
         function levenshtein(a, b) {
             const m = a.length, n = b.length;
             const dp = Array.from({ length: m + 1 }, (_, i) => Array.from({ length: n + 1 }, (_, j) => i === 0 ? j : j === 0 ? i : 0));
-            for (let i = 1; i <= m; i++)
-                for (let j = 1; j <= n; j++)
-                    dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+            for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
             return dp[m][n];
         }
-
-        // Normalize: lowercase, strip punctuation, strip niqqud (Hebrew diacritics), collapse spaces
         function norm(s) {
             if (!s) return '';
-            return s.trim()
-                .toLowerCase()
-                // strip Hebrew niqqud / cantillation
-                .replace(/[\u0591-\u05C7]/g, '')
-                // strip common punctuation
-                .replace(/['".,\-!?()]/g, '')
-                // collapse whitespace
-                .replace(/\s+/g, ' ')
-                .trim();
+            return s.trim().toLowerCase().replace(/[\u0591-\u05C7]/g, '').replace(/['".,\-!?()]/g, '').replace(/\s+/g, ' ').trim();
         }
-
-        // Fuzzy match: returns true if strings are similar enough
-        // threshold: allow up to ~20% error rate, min 1 for short strings
         function fuzzyMatch(guess, answer) {
-            const g = norm(guess);
-            const a = norm(answer);
+            const g = norm(guess), a = norm(answer);
             if (!g || !a) return false;
-            // Exact match
             if (g === a) return true;
-            // One contains the other (handles partial input)
             if (a.includes(g) || g.includes(a)) return true;
-            // Levenshtein distance based on length
-            const maxLen = Math.max(g.length, a.length);
-            const threshold = Math.max(1, Math.floor(maxLen * 0.25));
-            return levenshtein(g, a) <= threshold;
+            return levenshtein(g, a) <= Math.max(1, Math.floor(Math.max(g.length, a.length) * 0.25));
         }
-
-        // Score a guess: 1 = full match, 0.5 = partial (one of two fields), 0 = no match
         function scoreGuess(guess, song) {
             const titleMatch = fuzzyMatch(guess.tGuess, song.title);
             const artistMatch = fuzzyMatch(guess.aGuess, song.artist);
-            let score = 0;
-            if (titleMatch) score += 0.5;
-            if (artistMatch) score += 0.5;
-            return { score, titleMatch, artistMatch };
+            return { score: (titleMatch ? .5 : 0) + (artistMatch ? .5 : 0), titleMatch, artistMatch };
         }
 
-        // ── HELPERS ──
         window.switchTab = t => {
             document.getElementById('createForm').style.display = t === 'create' ? 'block' : 'none';
             document.getElementById('joinForm').style.display = t === 'join' ? 'block' : 'none';
             document.getElementById('tabCreate').classList.toggle('on', t === 'create');
             document.getElementById('tabJoin').classList.toggle('on', t === 'join');
         };
-
-        window.setWin = (n) => {
+        window.setWin = n => {
             selectedWin = n;
-            document.querySelectorAll('.win-opt').forEach(b => {
-                b.classList.toggle('on', parseInt(b.textContent) === n);
-            });
+            document.querySelectorAll('.win-opt').forEach(b => b.classList.toggle('on', parseInt(b.textContent) === n));
         };
-
         function toast(msg, dur = 2500) {
             const el = document.getElementById('toast');
             el.textContent = msg; el.classList.add('show');
             setTimeout(() => el.classList.remove('show'), dur);
         }
-        function screen(id) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-        function showLoading(msg = 'מחפש שיר...') {
-            document.getElementById('loadingText').textContent = msg;
-            document.getElementById('loadingOverlay').classList.remove('hidden');
-        }
+        function screen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+        function showLoading(msg = 'טוען') { document.getElementById('loadingText').textContent = msg; document.getElementById('loadingOverlay').classList.remove('hidden'); }
         function hideLoading() { document.getElementById('loadingOverlay').classList.add('hidden'); }
-        function shuffle(a) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]] } return b }
+        function shuffle(a) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]] } return b; }
         window.copyCode = () => { navigator.clipboard.writeText(roomCode).catch(() => { }); toast('הועתק! 📋'); };
 
-        // ── AUDIO SEARCH — with strict validation ──
-        // Returns a track ONLY if both artist and title match what we expect.
-        // This prevents iTunes from returning a completely wrong song.
-        async function searchMusic(title, artist, titleSearch, artistSearch) {
-            // The "canonical" names we'll validate against (prefer English search terms)
-            const expectTitle = (titleSearch || title).toLowerCase();
-            const expectArtist = (artistSearch || artist).toLowerCase();
-
-            // Query strategies — most specific first
-            const queries = [];
-            if (titleSearch && artistSearch) queries.push(`${titleSearch} ${artistSearch}`);
-            if (titleSearch && artistSearch) queries.push(`${artistSearch} ${titleSearch}`);
-            if (titleSearch) queries.push(titleSearch);
-            if (artistSearch) queries.push(artistSearch);
-            // Hebrew fallbacks
-            queries.push(`${title} ${artist}`);
-            queries.push(title);
-
-            for (const q of queries) {
-                let results;
-                try {
-                    const r = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=song&limit=15&country=IL`);
-                    const d = await r.json();
-                    results = d.results || [];
-                } catch (e) { continue; }
-
-                // Only consider tracks with a preview URL
-                const candidates = results.filter(x => x.previewUrl);
-
-                // Try to find one where BOTH artist AND title match our expected values
-                let match = candidates.find(x => {
-                    const itArtist = (x.artistName || '').toLowerCase();
-                    const itTitle = (x.trackName || '').toLowerCase();
-                    // Artist: expected string appears in iTunes artist name or vice-versa
-                    const artistOk = itArtist.includes(expectArtist) || expectArtist.includes(itArtist) ||
-                        levenshtein(itArtist, expectArtist) <= Math.max(2, Math.floor(expectArtist.length * 0.25));
-                    // Title: same fuzzy check
-                    const titleOk = itTitle.includes(expectTitle) || expectTitle.includes(itTitle) ||
-                        levenshtein(itTitle, expectTitle) <= Math.max(2, Math.floor(expectTitle.length * 0.3));
-                    return artistOk && titleOk;
-                });
-
-                // If strict both-field match not found, try artist-only match as fallback
-                if (!match) {
-                    match = candidates.find(x => {
-                        const itArtist = (x.artistName || '').toLowerCase();
-                        return itArtist.includes(expectArtist) || expectArtist.includes(itArtist) ||
-                            levenshtein(itArtist, expectArtist) <= Math.max(2, Math.floor(expectArtist.length * 0.25));
-                    });
-                }
-
-                if (match) return { preview_url: match.previewUrl, verifiedTitle: match.trackName, verifiedArtist: match.artistName };
-            }
-            return null; // No verified match found — song will be skipped
-        }
-
-        function stopAudio() {
-            if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
-            const b = document.getElementById('playBtn');
-            if (b) { b.textContent = '▶'; b.classList.remove('playing'); }
-            const pf = document.getElementById('progressFill');
-            if (pf) pf.style.width = '0%';
-        }
-
-        function loadAudio(url, autoplay = true) {
-            stopAudio();
-            audioEl = new Audio(url);
-            audioEl.crossOrigin = 'anonymous';
-            audioEl.addEventListener('timeupdate', () => {
-                if (!audioEl.duration) return;
-                const pct = (audioEl.currentTime / audioEl.duration) * 100;
-                document.getElementById('progressFill').style.width = pct + '%';
-                const cur = audioEl.currentTime;
-                document.getElementById('tCur').textContent = `${Math.floor(cur / 60)}:${String(Math.floor(cur % 60)).padStart(2, '0')}`;
-            });
-            audioEl.addEventListener('ended', () => {
-                document.getElementById('playBtn').textContent = '▶';
-                document.getElementById('playBtn').classList.remove('playing');
-                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPaused: true, audioTs: Date.now() });
-            });
-            if (autoplay) {
-                audioEl.play().catch(() => { });
-                document.getElementById('playBtn').textContent = '⏸';
-                document.getElementById('playBtn').classList.add('playing');
-            }
-        }
-
-        window.togglePlay = () => {
-            if (activePlayerId && activePlayerId !== myId) { toast('רק שחקן התור שולט על הנגינה'); return; }
-            if (!audioEl) return;
-            const playing = !audioEl.paused;
-            if (playing) {
-                audioEl.pause();
-                document.getElementById('playBtn').textContent = '▶';
-                document.getElementById('playBtn').classList.remove('playing');
-                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: audioEl.currentTime, audioPaused: true, audioTs: Date.now() });
-            } else {
-                audioEl.play().catch(() => { });
-                document.getElementById('playBtn').textContent = '⏸';
-                document.getElementById('playBtn').classList.add('playing');
-                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: audioEl.currentTime, audioPaused: false, audioTs: Date.now() });
-            }
-        };
-
-        window.seekAudio = e => {
-            if (activePlayerId && activePlayerId !== myId) return;
-            if (!audioEl || !audioEl.duration) return;
-            const rect = e.currentTarget.getBoundingClientRect();
-            const pos = ((e.clientX - rect.left) / rect.width) * audioEl.duration;
-            audioEl.currentTime = pos;
-            if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: pos, audioPaused: audioEl.paused, audioTs: Date.now() });
-        };
-
-        function syncAudioFromRoom(room) {
-            if (activePlayerId === myId) return;
-            if (!audioEl || !room.audioTs) return;
-            const elapsed = (Date.now() - room.audioTs) / 1000;
-            const target = (room.audioPos || 0) + (room.audioPaused ? 0 : elapsed);
-            if (Math.abs(audioEl.currentTime - target) > 1.5) audioEl.currentTime = Math.min(target, audioEl.duration || 30);
-            if (room.audioPaused && !audioEl.paused) { audioEl.pause(); document.getElementById('playBtn').textContent = '▶'; document.getElementById('playBtn').classList.remove('playing'); }
-            if (!room.audioPaused && audioEl.paused) { audioEl.play().catch(() => { }); document.getElementById('playBtn').textContent = '⏸'; document.getElementById('playBtn').classList.add('playing'); }
-        }
-
-        // ── ROOM ──
         window.createRoom = async () => {
             const name = document.getElementById('createName').value.trim();
             if (!name) { document.getElementById('createError').textContent = 'הכנס שם'; return; }
             myName = name; isHost = true;
-            showLoading('טוען שירים...');
+            showLoading('מכין את החדר...');
             roomCode = Math.random().toString(36).slice(2, 6).toUpperCase();
             const g = document.getElementById('createGenre').value;
-
             const snap = await get(ref(db, 'songs'));
-            if (!snap.exists()) { hideLoading(); document.getElementById('createError').textContent = '❌ אין שירים בדאטאבייס. הוסף שירים בעמוד הניהול.'; return; }
+            if (!snap.exists()) { hideLoading(); document.getElementById('createError').textContent = '❌ אין שירים בדאטאבייס.'; return; }
             let songs = Object.entries(snap.val()).map(([id, s]) => ({ dbId: id, ...s }));
             if (g !== 'all') songs = songs.filter(s => s.genre === g);
+            songs = songs.filter(s => s.preview_url); // דורש preview מדיזר
             songs = shuffle(songs);
-            if (songs.length < 5) { hideLoading(); document.getElementById('createError').textContent = '❌ אין מספיק שירים בדאטאבייס.'; return; }
-
+            if (songs.length < 5) { hideLoading(); document.getElementById('createError').textContent = '❌ אין מספיק שירים מוכנים עם Deezer Preview.'; return; }
+            const songsForRoom = songs.map(s => ({
+                dbId: s.dbId, title: s.title, artist: s.artist, year: s.year, genre: s.genre,
+                preview_url: s.preview_url
+            }));
             await set(ref(db, `rooms/${roomCode}`), {
                 host: myId, status: 'waiting', genre: g,
-                songs: songs.map(s => ({ dbId: s.dbId, title: s.title, artist: s.artist, year: s.year, genre: s.genre, titleSearch: s.titleSearch || s.title, artistSearch: s.artistSearch || s.artist })),
+                songs: songsForRoom,
                 songIndex: 0, turnIndex: 0, winTarget: selectedWin,
                 playedSongs: {},
                 players: { [myId]: { name, score: 1, tokens: 0, isHost: true } }
@@ -1612,25 +1577,22 @@
             });
         }
 
-        async function fetchValidSong(code, songs, playedSongs, startIdx) {
+        async function fetchNextSong(code, songs, playedSongs, startIdx) {
             let idx = startIdx;
             while (idx < songs.length) {
                 const s = songs[idx];
-                if (!playedSongs[s.dbId]) {
-                    const track = await searchMusic(s.title, s.artist, s.titleSearch, s.artistSearch);
-                    if (track) {
-                        const updates = {};
-                        updates[`rooms/${code}/currentSong`] = { ...s, preview_url: track.preview_url };
-                        updates[`rooms/${code}/songIndex`] = idx + 1;
-                        updates[`rooms/${code}/playedSongs/${s.dbId}`] = true;
-                        updates[`rooms/${code}/turnState`] = 'guessing';
-                        updates[`rooms/${code}/guesses`] = null;
-                        updates[`rooms/${code}/audioPos`] = 0;
-                        updates[`rooms/${code}/audioPaused`] = false;
-                        updates[`rooms/${code}/audioTs`] = Date.now();
-                        await update(ref(db), updates);
-                        return true;
-                    }
+                if (!playedSongs[s.dbId] && s.preview_url) {
+                    const updates = {};
+                    updates[`rooms/${code}/currentSong`] = { ...s };
+                    updates[`rooms/${code}/songIndex`] = idx + 1;
+                    updates[`rooms/${code}/playedSongs/${s.dbId}`] = true;
+                    updates[`rooms/${code}/turnState`] = 'guessing';
+                    updates[`rooms/${code}/guesses`] = null;
+                    updates[`rooms/${code}/audioPos`] = 0;
+                    updates[`rooms/${code}/audioPaused`] = false;
+                    updates[`rooms/${code}/audioTs`] = Date.now();
+                    await update(ref(db), updates);
+                    return true;
                 }
                 idx++;
             }
@@ -1639,12 +1601,11 @@
         }
 
         window.startGame = async () => {
-            showLoading('מתחיל משחק...');
+            showLoading('מכין שירים...');
             const room = (await get(roomRef)).val();
             const updates = {};
             let si = 0;
             const pids = Object.keys(room.players);
-
             pids.forEach(pid => {
                 const starterSong = room.songs[si++];
                 updates[`rooms/${roomCode}/players/${pid}/timeline`] = [{ title: starterSong.title, artist: starterSong.artist, year: starterSong.year }];
@@ -1655,24 +1616,19 @@
             updates[`rooms/${roomCode}/turnIndex`] = 0;
             updates[`rooms/${roomCode}/turnState`] = 'loading';
             await update(ref(db), updates);
-
             const room2 = (await get(roomRef)).val();
-            const found = await fetchValidSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
-            if (!found) { hideLoading(); toast('❌ לא נמצאו שירים נוספים'); }
+            const found = await fetchNextSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
+            if (!found) { hideLoading(); toast('❌ לא נמצאו שירים זמינים'); }
             hideLoading();
         };
 
         function handleRoom(room) {
             const players = Object.entries(room.players || {}).map(([id, p]) => ({ id, ...p }));
             if (room.status === 'waiting') {
-                document.getElementById('waitChips').innerHTML = players.map(p =>
-                    `<div class="chip${p.isHost ? ' host' : ''}">${p.isHost ? '👑 ' : ''}${p.name}</div>`
-                ).join('');
+                document.getElementById('waitChips').innerHTML = players.map(p => `<div class="chip${p.isHost ? ' host' : ''}">${p.isHost ? '👑 ' : ''}${p.name}</div>`).join('');
                 const winTarget = room.winTarget || 8;
-                const genreLabels = { all: 'הכול', hits: 'הכי גדולים', pop: 'פופ', rock: 'רוק', mizrahi: 'מזרחי', hiphop: 'היפ הופ', electronic: 'אלקטרוני' };
-                document.getElementById('gameInfoBadges').innerHTML = `
-                    <div class="info-badge">🎵 ז'אנר: <span>${genreLabels[room.genre] || room.genre}</span></div>
-                    <div class="info-badge">🎯 ניצחון: <span>${winTarget} קלפים</span></div>`;
+                const GL = { all: 'הכול', hits: 'הכי גדולים', pop: 'פופ', rock: 'רוק', mizrahi: 'מזרחי', hiphop: 'היפ הופ', electronic: 'אלקטרוני' };
+                document.getElementById('gameInfoBadges').innerHTML = `<div class="info-badge">🎵 ז'אנר: <span>${GL[room.genre] || room.genre}</span></div><div class="info-badge">🎯 ניצחון: <span>${winTarget} קלפים</span></div>`;
                 if (isHost) document.getElementById('startBtn').disabled = players.length < 1;
                 document.getElementById('hostControls').style.display = isHost ? 'block' : 'none';
                 document.getElementById('guestWait').style.display = isHost ? 'none' : 'block';
@@ -1696,32 +1652,31 @@
 
             document.getElementById('gameCode').textContent = roomCode;
             document.getElementById('winTargetPill').textContent = `🎯 ${winTarget} קלפים`;
-
             const maxScore = Math.max(...players.map(p => p.score));
-            const pct = Math.min(100, (maxScore / winTarget) * 100);
-            document.getElementById('winProgressFill').style.width = pct + '%';
+            document.getElementById('winProgressFill').style.width = Math.min(100, (maxScore / winTarget) * 100) + '%';
             document.getElementById('winProgressLabel').textContent = `מוביל: ${maxScore} / ${winTarget} קלפים`;
 
             document.getElementById('scores').innerHTML = [...players].sort((a, b) => b.score - a.score).map(p =>
                 `<div class="sc${p.id === activePlayerId ? ' active' : ''}${p.id === myId ? ' me' : ''}">
-                    <div class="sc-n">${p.name}</div>
-                    <div class="sc-p">${p.score}</div>
-                    <div class="sc-t">${p.tokens || 0}🪙</div>
-                </div>`
+                                        <div class="sc-n">${p.name}</div>
+                                        <div class="sc-p">${p.score}</div>
+                                        <div class="sc-t">${p.tokens || 0}🪙</div>
+                                    </div>`
             ).join('');
 
             const banner = document.getElementById('banner');
             if (isMyTurn) { banner.textContent = 'התור שלך! לחץ + בציר הזמן למיקום'; banner.className = 'banner'; }
             else { banner.textContent = `התור של ${activePl?.name} — נחש ותרוויח!`; banner.className = 'banner other'; }
 
-            const audioBar = document.getElementById('audioBar');
-            const listenerBar = document.getElementById('listenerBar');
             if (isMyTurn) {
-                audioBar.style.display = 'flex'; listenerBar.style.display = 'none';
+                document.getElementById('audioBar').style.display = 'flex';
+                document.getElementById('listenerBar').style.display = 'none';
                 document.getElementById('playBtn').disabled = false;
             } else {
-                audioBar.style.display = 'none'; listenerBar.style.display = 'flex';
-                document.getElementById('listenerWave').style.display = (audioEl && !audioEl.paused) ? 'flex' : 'none';
+                document.getElementById('audioBar').style.display = 'none';
+                document.getElementById('listenerBar').style.display = 'flex';
+                const isPlaying = !audioPlayer.paused && audioPlayer.src;
+                document.getElementById('listenerWave').style.display = isPlaying ? 'flex' : 'none';
             }
 
             const tl = activePl?.timeline || [];
@@ -1744,19 +1699,15 @@
             const myGuess = room.guesses?.[myId];
             if (room.turnState === 'guessing') {
                 guessBar.style.display = 'block';
-                const inputsRow = document.querySelector('.guess-inputs-row');
-                const submittedMsg = document.getElementById('guessSubmittedMsg');
                 if (myGuess) {
-                    inputsRow.style.display = 'none';
-                    submittedMsg.style.display = 'block';
+                    document.querySelector('.guess-inputs-row').style.display = 'none';
+                    document.getElementById('guessSubmittedMsg').style.display = 'block';
                 } else {
-                    inputsRow.style.display = 'flex';
-                    submittedMsg.style.display = 'none';
+                    document.querySelector('.guess-inputs-row').style.display = 'flex';
+                    document.getElementById('guessSubmittedMsg').style.display = 'none';
                     document.getElementById('submitGuessBtn').disabled = false;
                 }
-            } else {
-                guessBar.style.display = 'none';
-            }
+            } else { guessBar.style.display = 'none'; }
 
             if (room.turnState !== 'guessing') {
                 document.getElementById('placeConfirm').classList.remove('show');
@@ -1774,11 +1725,15 @@
                 document.getElementById('submitGuessBtn').disabled = false;
                 document.getElementById('guessSubmittedMsg').style.display = 'none';
                 document.querySelector('.guess-inputs-row').style.display = 'flex';
-                document.getElementById('audioTitle').textContent = '— שיר מוסתר —';
-                document.getElementById('audioArtist').textContent = '—';
+                document.getElementById('audioTitle').textContent = '🎵 שיר לא ידוע';
+                document.getElementById('audioArtist').textContent = '— נחש מי זה —';
                 document.getElementById('nextBtn').style.display = 'none';
+
                 if (room.currentSong?.preview_url) {
                     loadAudio(room.currentSong.preview_url, isMyTurn);
+                } else {
+                    document.getElementById('playBtn').disabled = true;
+                    document.getElementById('audioTitle').textContent = '⚠️ לא זמין';
                 }
             }
 
@@ -1795,7 +1750,7 @@
                 }
             }
 
-            if (room.turnState === 'guessing' && !isMyTurn && audioEl) syncAudioFromRoom(room);
+            if (room.turnState === 'guessing' && !isMyTurn) syncAudioFromRoom(room);
         }
 
         function dropZone(index, tl) {
@@ -1808,9 +1763,9 @@
             else yearHint = 'כאן';
             const isSelected = selectedDropIndex === index;
             return `<div class="tl-drop${isSelected ? ' selected' : ''}" onclick="selectDrop(${index},'${yearHint}')">
-                <div class="tl-drop-inner">+</div>
-                <div class="tl-drop-year">${yearHint}</div>
-            </div>`;
+                                    <div class="tl-drop-inner">+</div>
+                                    <div class="tl-drop-year">${yearHint}</div>
+                                </div>`;
         }
 
         window.selectDrop = (index, label) => {
@@ -1847,8 +1802,9 @@
             if (type === 'swap' && tokens >= 1) {
                 await update(ref(db, `rooms/${roomCode}/players/${myId}`), { tokens: tokens - 1 });
                 stopAudio(); currentTurnState = '';
-                showLoading('מחפש שיר חלופי...');
-                await fetchValidSong(roomCode, room.songs, room.playedSongs || {}, room.songIndex);
+                showLoading('מחפש שיר...');
+                const room2 = (await get(roomRef)).val();
+                await fetchNextSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
                 hideLoading();
             } else if (type === 'buy' && tokens >= 3) {
                 await update(ref(db, `rooms/${roomCode}/players/${myId}`), { tokens: tokens - 3 });
@@ -1860,7 +1816,6 @@
 
         async function processTurn(isValid, insertIndex, room) {
             const song = room.currentSong;
-            const winTarget = room.winTarget || 8;
             const updates = {};
             if (isValid) {
                 const tl = [...(room.players[activePlayerId].timeline || [])];
@@ -1868,32 +1823,17 @@
                 updates[`rooms/${roomCode}/players/${activePlayerId}/timeline`] = tl;
                 updates[`rooms/${roomCode}/players/${activePlayerId}/score`] = tl.length;
             }
-
             const guesses = room.guesses || {};
             const tokenResults = [];
-
             Object.keys(room.players).forEach(pid => {
                 const g = guesses[pid]; if (!g) return;
                 const result = scoreGuess(g, song);
                 if (result.score > 0) {
-                    const newTokens = (room.players[pid].tokens || 0) + result.score;
-                    updates[`rooms/${roomCode}/players/${pid}/tokens`] = newTokens;
-                    tokenResults.push({
-                        name: room.players[pid].name,
-                        score: result.score,
-                        titleMatch: result.titleMatch,
-                        artistMatch: result.artistMatch,
-                        aGuess: g.aGuess,
-                        tGuess: g.tGuess
-                    });
+                    updates[`rooms/${roomCode}/players/${pid}/tokens`] = (room.players[pid].tokens || 0) + result.score;
+                    tokenResults.push({ name: room.players[pid].name, score: result.score, titleMatch: result.titleMatch, artistMatch: result.artistMatch });
                 }
             });
-
-            updates[`rooms/${roomCode}/lastResult`] = {
-                success: isValid,
-                tokenResults: tokenResults,
-                song: { title: song.title, artist: song.artist }
-            };
+            updates[`rooms/${roomCode}/lastResult`] = { success: isValid, tokenResults, song: { title: song.title, artist: song.artist } };
             updates[`rooms/${roomCode}/turnState`] = 'revealed';
             await update(ref(db), updates);
         }
@@ -1905,26 +1845,19 @@
             document.getElementById('fbYear').textContent = song.year;
             document.getElementById('audioTitle').textContent = song.title;
             document.getElementById('audioArtist').textContent = song.artist;
-
             const st = document.getElementById('resStatus');
             if (res.success) { st.textContent = '✅ שיבוץ מוצלח!'; st.className = 'res-status ok'; }
             else { st.textContent = '❌ שגיאה בציר הזמן!'; st.className = 'res-status fail'; }
-
-            // Build token result display
             const tokenResults = res.tokenResults || [];
             let html = '';
-            if (tokenResults.length === 0) {
-                html = '<span style="color:var(--muted)">אף אחד לא ניחש נכון 😅</span>';
-            } else {
-                tokenResults.forEach(r => {
-                    const parts = [];
-                    if (r.titleMatch) parts.push(`שם שיר ✓`);
-                    if (r.artistMatch) parts.push(`אמן ✓`);
-                    const coins = r.score === 1 ? '🪙🪙' : '🪙';
-                    const cls = r.score === 1 ? 'guess-winner' : 'guess-partial';
-                    html += `<div><span class="${cls}">${r.name}</span> ניחש: ${parts.join(' + ')} → ${coins} +${r.score}</div>`;
-                });
-            }
+            if (!tokenResults.length) { html = '<span style="color:var(--muted)">אף אחד לא ניחש נכון 😅</span>'; }
+            else tokenResults.forEach(r => {
+                const parts = [];
+                if (r.titleMatch) parts.push('שם שיר ✓');
+                if (r.artistMatch) parts.push('אמן ✓');
+                const cls = r.score === 1 ? 'guess-winner' : 'guess-partial';
+                html += `<div><span class="${cls}">${r.name}</span> ניחש: ${parts.join(' + ')} → +${r.score}🪙</div>`;
+            });
             document.getElementById('resTokens').innerHTML = html;
             document.getElementById('resultBox').classList.add('show');
         }
@@ -1936,12 +1869,11 @@
             if (maxScore >= winTarget) {
                 await update(ref(db, `rooms/${roomCode}`), { status: 'finished' });
             } else {
-                currentTurnState = '';
-                stopAudio();
+                currentTurnState = ''; stopAudio();
                 await update(ref(db, `rooms/${roomCode}`), { turnIndex: (room.turnIndex || 0) + 1 });
-                showLoading('מחפש שיר חדש...');
+                showLoading('מכין שיר הבא...');
                 const room2 = (await get(roomRef)).val();
-                await fetchValidSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
+                await fetchNextSong(roomCode, room2.songs, room2.playedSongs || {}, room2.songIndex);
                 hideLoading();
             }
         };
@@ -1952,7 +1884,6 @@
             if (!a && !t) { toast('הכנס ניחוש!'); return; }
             await update(ref(db, `rooms/${roomCode}/guesses/${myId}`), { aGuess: a, tGuess: t });
             document.getElementById('submitGuessBtn').disabled = true;
-            // Show submitted stateד
             document.querySelector('.guess-inputs-row').style.display = 'none';
             document.getElementById('guessSubmittedMsg').style.display = 'block';
             toast('ניחוש נשלח! 🤞');
@@ -1962,14 +1893,16 @@
             stopAudio();
             const sorted = [...players].sort((a, b) => b.score - a.score);
             document.getElementById('gameScreen').innerHTML = `<div class="finish-screen">
-                <div class="finish-trophy">🏆</div>
-                <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
-                ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
-                <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
-            </div>`;
+                                    <div class="finish-trophy">🏆</div>
+                                    <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
+                                    ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
+                                    <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
+                                    <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
+                                </div>`;
         }
 
         window.leaveRoom = () => location.reload();
+
     </script>
 </body>
 </html>
