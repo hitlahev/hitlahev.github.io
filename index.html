@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Hit-La-Hev 🔥</title>
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -423,45 +423,43 @@
             padding: 5px 12px
         }
 
-        /* --- אזור הניקוד החדש --- */
-        /* --- אזור הניקוד: קומפקטי ומלבני --- */
         .scores {
             display: flex;
             gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 16px;
+            margin-bottom: 16px
         }
 
         .sc {
             flex: 0 0 auto;
             background: linear-gradient(145deg, var(--s2), var(--s1));
             border: 1px solid var(--border);
-            border-radius: 10px; /* פחות עגול, יותר מלבני */
-            padding: 8px 14px; /* הרבה יותר קומפקטי */
+            border-radius: 10px;
+            padding: 8px 14px;
             transition: .3s;
             display: flex;
-            flex-direction: row; /* מסדר אותם בשורה - מלבן קלאסי! */
+            flex-direction: row;
             align-items: center;
-            gap: 16px; /* רווח בין הפרטים למטבע */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            gap: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2)
         }
 
             .sc.me {
                 border-color: rgba(255,0,0,.4);
-                background: linear-gradient(145deg, rgba(255,0,0,.1), var(--s1));
+                background: linear-gradient(145deg, rgba(255,0,0,.1), var(--s1))
             }
 
             .sc.active {
                 border-color: var(--gold) !important;
-                box-shadow: 0 0 10px rgba(255,201,64,.25);
+                box-shadow: 0 0 10px rgba(255,201,64,.25)
             }
 
         .sc-details {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 2px;
+            gap: 2px
         }
 
         .sc-n {
@@ -471,26 +469,25 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 80px;
+            max-width: 80px
         }
 
         .sc-p {
-            font-size: 1.1rem; /* מוקטן משמעותית */
+            font-size: 1.1rem;
             font-weight: 900;
             color: var(--text);
             line-height: 1;
             display: flex;
             align-items: baseline;
-            gap: 4px;
+            gap: 4px
         }
 
             .sc-p span {
                 font-size: 0.65rem;
                 color: var(--muted);
-                font-weight: 400;
+                font-weight: 400
             }
 
-        /* מטבע הזהב - מוקטן ומותאם אישית */
         .coin-badge {
             display: inline-flex;
             align-items: center;
@@ -503,7 +500,7 @@
             color: #573300;
             font-weight: 900;
             font-size: .8rem;
-            font-family: 'DM Mono', monospace;
+            font-family: 'DM Mono', monospace
         }
 
         .coin-icon {
@@ -515,7 +512,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.6rem;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.3)
         }
 
         .win-progress {
@@ -709,6 +706,7 @@
             overflow: hidden;
             margin-top: 5px;
             position: relative;
+            direction: ltr
         }
 
         .progress-fill {
@@ -716,7 +714,8 @@
             background: var(--red);
             width: 0%;
             pointer-events: none;
-            transition: width .2s linear
+            transition: width .2s linear;
+            direction: ltr
         }
 
         .time-labels {
@@ -917,6 +916,173 @@
             color: #000;
             box-shadow: 0 0 10px rgba(255,201,64,.5)
         }
+
+        /* --- ניחוש מיקום ביריב --- */
+        .tl-bet-drop {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 54px;
+            min-height: 92px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: .15s;
+            padding-top: 2px;
+        }
+
+        .tl-bet-inner {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(77,159,255,.08);
+            border: 1.5px dashed rgba(77,159,255,.8);
+            color: var(--blue);
+            font-size: .8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .15s;
+            flex-shrink: 0;
+            font-weight: 800;
+            box-shadow: 0 0 0 rgba(77,159,255,0);
+        }
+
+        .tl-bet-drop:hover .tl-bet-inner {
+            background: rgba(77,159,255,.18);
+            border-style: solid;
+            transform: scale(1.12);
+            box-shadow: 0 0 12px rgba(77,159,255,.18);
+        }
+
+        .tl-bet-drop.selected .tl-bet-inner {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: #000;
+            box-shadow: 0 0 14px rgba(77,159,255,.35)
+        }
+
+        .tl-bet-drop.locked {
+            cursor: default
+        }
+
+            .tl-bet-drop.locked .tl-bet-inner {
+                background: rgba(77,159,255,.18);
+                border-color: rgba(77,159,255,.9);
+                border-style: solid;
+                color: var(--blue);
+                box-shadow: 0 0 14px rgba(77,159,255,.15)
+            }
+
+        .tl-bet-drop.disabled {
+            cursor: default;
+            opacity: 0.35;
+            filter: grayscale(0.1);
+        }
+
+        .tl-bet-year {
+            font-family: 'DM Mono',monospace;
+            font-size: .58rem;
+            color: var(--blue);
+            margin-top: 3px;
+            opacity: .9
+        }
+
+        .tl-bet-stack {
+            margin-top: 6px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .bet-chip {
+            width: 100%;
+            max-width: 52px;
+            background: rgba(77,159,255,.08);
+            border: 1px solid rgba(77,159,255,.22);
+            color: rgba(255,255,255,.85);
+            border-radius: 8px;
+            padding: 3px 6px;
+            font-size: .58rem;
+            line-height: 1.1;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            direction: rtl;
+        }
+
+            .bet-chip.me {
+                border-color: rgba(255,201,64,.35);
+                background: rgba(255,201,64,.08);
+                color: rgba(255,201,64,.95);
+            }
+
+        .bet-count {
+            position: absolute;
+            top: -2px;
+            right: 8px;
+            background: rgba(77,159,255,.9);
+            border: 1px solid rgba(0,0,0,.35);
+            color: #000;
+            font-family: 'DM Mono', monospace;
+            font-size: .6rem;
+            font-weight: 900;
+            border-radius: 999px;
+            padding: 1px 6px;
+            box-shadow: 0 6px 14px rgba(0,0,0,.25);
+            transform: translateX(50%);
+        }
+
+        /* פאנל אישור ניחוש ביריב */
+        .bet-confirm {
+            background: rgba(77,159,255,.08);
+            border: 1px solid rgba(77,159,255,.3);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px
+        }
+
+            .bet-confirm.show {
+                display: flex
+            }
+
+        .bet-label {
+            font-size: .85rem;
+            font-weight: 800;
+            color: var(--blue)
+        }
+
+            .bet-label span {
+                color: var(--text)
+            }
+
+        .btn-bet {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 10px;
+            background: var(--blue);
+            color: #fff;
+            font-family: 'Heebo',sans-serif;
+            font-size: .85rem;
+            font-weight: 900;
+            cursor: pointer;
+            white-space: nowrap
+        }
+
+            .btn-bet:disabled {
+                opacity: .4;
+                cursor: not-allowed
+            }
 
         .place-confirm {
             background: rgba(255,0,0,.08);
@@ -1214,6 +1380,157 @@
                 content: '...'
             }
         }
+
+        /* --- How to play modal --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.6);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 1000;
+        }
+
+            .modal-overlay.show {
+                display: flex;
+            }
+
+        .modal {
+            width: min(560px, 100%);
+            background: linear-gradient(180deg, rgba(16,16,24,.98), rgba(8,8,14,.98));
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 18px;
+            box-shadow: 0 18px 60px rgba(0,0,0,.6);
+            overflow: hidden;
+            transform: translateY(14px) scale(.98);
+            opacity: 0;
+            animation: modalIn .28s ease forwards;
+        }
+
+        @keyframes modalIn {
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-h {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .modal-title {
+            font-weight: 900;
+            letter-spacing: .2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-close {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.04);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .modal-b {
+            padding: 14px 16px 18px;
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .step {
+            border: 1px solid rgba(255,255,255,.08);
+            background: rgba(255,255,255,.03);
+            border-radius: 14px;
+            padding: 12px 12px;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 12px;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .step::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, rgba(255,64,96,.0), rgba(255,64,96,.10), rgba(255,201,64,.10), rgba(77,159,255,.10), rgba(255,64,96,.0));
+                transform: translateX(-60%);
+                animation: shimmer 2.6s ease-in-out infinite;
+                opacity: .8;
+                pointer-events: none;
+            }
+
+        @keyframes shimmer {
+            0%,100% {
+                transform: translateX(-60%);
+            }
+
+            50% {
+                transform: translateX(60%);
+            }
+        }
+
+        .step-ico {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 900;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.10);
+        }
+
+        .step-t {
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .step-d {
+            font-size: .82rem;
+            color: rgba(255,255,255,.65);
+            line-height: 1.45;
+        }
+
+        .modal-f {
+            padding: 12px 16px 16px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill-mini {
+            font-family: 'DM Mono', monospace;
+            font-size: .72rem;
+            border: 1px solid rgba(255,255,255,.10);
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.03);
+            color: rgba(255,255,255,.75);
+        }
     </style>
 </head>
 <body>
@@ -1222,6 +1539,52 @@
     <div class="loading-overlay hidden" id="loadingOverlay">
         <div class="spinner"></div>
         <div class="loading-text loading-dots" id="loadingText">טוען</div>
+    </div>
+
+    <!-- How to play -->
+    <div class="modal-overlay" id="howOverlay" onclick="if(event.target===this) closeHowTo()">
+        <div class="modal" role="dialog" aria-modal="true" aria-label="איך משחקים">
+            <div class="modal-h">
+                <div class="modal-title">🔥 איך משחקים</div>
+                <button class="modal-close" onclick="closeHowTo()">✕</button>
+            </div>
+            <div class="modal-b">
+                <div class="how-steps">
+                    <div class="step">
+                        <div class="step-ico" style="color:var(--red);border-color:rgba(255,64,96,.25)">🎧</div>
+                        <div>
+                            <div class="step-t">מקשיבים</div>
+                            <div class="step-d">בתור של שחקן אחד בלבד יש שליטה על הנגינה ל־30 שניות.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ico" style="color:var(--gold);border-color:rgba(255,201,64,.25)">➕</div>
+                        <div>
+                            <div class="step-t">משבצים בציר</div>
+                            <div class="step-d">שחקן התור לוחץ על ה־➕ וממקם את השיר בין השנים.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ico" style="color:var(--blue);border-color:rgba(77,159,255,.25)">🪙</div>
+                        <div>
+                            <div class="step-t">הימור על יריב</div>
+                            <div class="step-d">מי שלא בתור יכול להמר על מיקום בציר היריב (עולה 1 מטבע). כולם רואים את ההימורים—חוץ ממי שבתור.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ico" style="color:var(--green);border-color:rgba(0,230,118,.25)">🏁</div>
+                        <div>
+                            <div class="step-t">איך מנצחים</div>
+                            <div class="step-d">ראשון שמגיע ליעד הקלפים (8/10/12…) מנצח.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-f">
+                <div class="pill-mini">💡 טיפ: ניחוש אמן/שם שיר נותן מטבעות</div>
+                <div class="pill-mini">🎯 הימור נכון יכול להביא קלף</div>
+            </div>
+        </div>
     </div>
 
     <div id="lobbyScreen" class="screen active">
@@ -1259,6 +1622,7 @@
                     </div>
                 </div>
                 <button class="btn" onclick="createRoom()">🎮 צור חדר</button>
+                <button class="btn ghost" onclick="openHowTo()">ℹ️ איך משחקים</button>
                 <div id="createError" class="err"></div>
             </div>
             <div id="joinForm" style="display:none">
@@ -1268,6 +1632,7 @@
                     <input type="text" id="joinCode" placeholder="ABCD" maxlength="4" style="text-transform:uppercase;letter-spacing:6px;" autocomplete="off">
                 </div>
                 <button class="btn" onclick="joinRoom()">🚪 הצטרף</button>
+                <button class="btn ghost" onclick="openHowTo()">ℹ️ איך משחקים</button>
                 <div id="joinError" class="err"></div>
             </div>
         </div>
@@ -1329,7 +1694,7 @@
                     <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
-                    <div class="time-labels"><span id="tCur">0:00</span><span id="tDur">0:30</span></div>
+                    <div class="time-labels"><span id="tDur">0:30</span><span id="tCur">0:00</span></div>
                 </div>
             </div>
             <div class="listener-bar" id="listenerBar" style="display:none">
@@ -1346,6 +1711,12 @@
                 <div class="section-title" id="tlTitle">ציר הזמן</div>
                 <div class="tl-scroll" id="tlContainer"></div>
             </div>
+
+            <div class="bet-confirm" id="betConfirm">
+                <div class="bet-label">🎯 הימור: <span id="betYearLabel">—</span> <span style="font-size:.75rem;color:var(--muted2)">(עולה 1🪙)</span></div>
+                <button class="btn-bet" id="betConfirmBtn" onclick="confirmBet()">✓ אשר הימור</button>
+            </div>
+
             <div class="scores" id="scores"></div>
             <div class="place-confirm" id="placeConfirm">
                 <div class="place-label">מקם ב: <span id="placeYearLabel">—</span></div>
@@ -1377,7 +1748,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getDatabase, ref, set, get, update, onValue, off, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+        import { getDatabase, ref, set, get, update, onValue, off, onDisconnect, remove, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
         const FB = {
             apiKey: "AIzaSyA7iZnnBEMkUIZa51a0U2r1_hos8_wFpBI",
@@ -1395,17 +1766,26 @@
         let roomRef = null, roomUnsub = null;
         let currentTurnState = '', activePlayerId = '';
         let selectedDropIndex = null, selectedWin = 8;
+        let selectedBetIndex = null;
 
         const audioPlayer = document.getElementById('audioPlayer');
         let audioProgressTimer = null;
         let currentAudioUrl = null;
+        let autoNextTimer = null;
+        let guessDraftTimer = null;
+
+        // How to play modal
+        const howOverlay = document.getElementById('howOverlay');
+        window.openHowTo = () => { howOverlay.classList.add('show'); };
+        window.closeHowTo = () => { howOverlay.classList.remove('show'); };
+        function closeHowToOnStart() { howOverlay.classList.remove('show'); }
+        window.addEventListener('keydown', e => { if (e.key === 'Escape') closeHowTo(); });
 
         audioPlayer.addEventListener('play', () => {
             document.getElementById('playBtn').textContent = '⏸';
             document.getElementById('playBtn').classList.add('playing');
             startProgressTimer();
         });
-
         audioPlayer.addEventListener('pause', () => {
             document.getElementById('playBtn').textContent = '▶';
             document.getElementById('playBtn').classList.remove('playing');
@@ -1414,7 +1794,6 @@
                 update(ref(db, `rooms/${roomCode}`), { audioPaused: true, audioTs: Date.now() });
             }
         });
-
         audioPlayer.addEventListener('ended', () => {
             document.getElementById('playBtn').textContent = '▶';
             document.getElementById('playBtn').classList.remove('playing');
@@ -1432,86 +1811,55 @@
             document.getElementById('progressFill').style.width = '0%';
             document.getElementById('tCur').textContent = '0:00';
         }
-
         function startProgressTimer() {
             stopProgressTimer();
             audioProgressTimer = setInterval(() => {
                 if (!audioPlayer.duration) return;
                 const cur = audioPlayer.currentTime;
-                const dur = 30; // 30 sec max
+                const dur = 30;
                 document.getElementById('progressFill').style.width = Math.min(100, (cur / dur * 100)) + '%';
                 document.getElementById('tCur').textContent = `0:${String(Math.floor(cur)).padStart(2, '0')}`;
-
                 if (cur >= dur) {
                     audioPlayer.pause();
                     if (roomCode && activePlayerId === myId) update(ref(db, `rooms/${roomCode}`), { audioPos: dur, audioPaused: true, audioTs: Date.now() });
                 }
             }, 100);
         }
-
         function stopProgressTimer() {
             if (audioProgressTimer) { clearInterval(audioProgressTimer); audioProgressTimer = null; }
         }
-
         function loadAudio(rawUrl, autoplay = true) {
             stopAudio();
-
             if (!rawUrl || typeof rawUrl !== 'string' || rawUrl.length < 10) {
                 currentAudioUrl = null;
                 document.getElementById('playBtn').disabled = true;
                 document.getElementById('audioTitle').textContent = '⚠️ שיר לא זמין';
                 return;
             }
-
             currentAudioUrl = rawUrl;
             document.getElementById('playBtn').disabled = false;
             audioPlayer.src = currentAudioUrl;
-
             if (autoplay) {
-                const playPromise = audioPlayer.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(e => {
-                        console.warn('הדפדפן חסם נגינה אוטומטית. מחכה ללחיצת משתמש.');
-                    });
-                }
+                const p = audioPlayer.play();
+                if (p !== undefined) p.catch(() => console.warn('Autoplay blocked'));
             }
         }
 
         window.togglePlay = () => {
-            if (activePlayerId && activePlayerId !== myId) {
-                toast('רק שחקן התור שולט על הנגינה');
-                return;
-            }
-            if (!currentAudioUrl) {
-                toast('השיר פגום או חסר קישור תקין');
-                return;
-            }
-
+            if (activePlayerId && activePlayerId !== myId) { toast('רק שחקן התור שולט על הנגינה'); return; }
+            if (!currentAudioUrl) { toast('השיר פגום או חסר קישור תקין'); return; }
             if (!audioPlayer.paused && audioPlayer.currentTime > 0) {
                 audioPlayer.pause();
-                if (roomCode) update(ref(db, `rooms/${roomCode}`), {
-                    audioPos: audioPlayer.currentTime,
-                    audioPaused: true,
-                    audioTs: Date.now()
-                });
+                if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: audioPlayer.currentTime, audioPaused: true, audioTs: Date.now() });
             } else {
-                const playPromise = audioPlayer.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        if (roomCode) update(ref(db, `rooms/${roomCode}`), {
-                            audioPos: audioPlayer.currentTime || 0,
-                            audioPaused: false,
-                            audioTs: Date.now()
-                        });
-                    }).catch(e => {
-                        console.error('Play error:', e);
-                        toast('אנא לחץ שוב כדי לנגן.');
-                        audioPlayer.load();
-                    });
+                const p = audioPlayer.play();
+                if (p !== undefined) {
+                    p.then(() => {
+                        if (roomCode) update(ref(db, `rooms/${roomCode}`), { audioPos: audioPlayer.currentTime || 0, audioPaused: false, audioTs: Date.now() });
+                    }).catch(() => { toast('אנא לחץ שוב כדי לנגן.'); audioPlayer.load(); });
                 }
             }
         };
-
         window.seekAudio = e => {
             if (activePlayerId && activePlayerId !== myId) return;
             if (!audioPlayer.src) return;
@@ -1524,21 +1872,14 @@
         function syncAudioFromRoom(room) {
             if (activePlayerId === myId) return;
             if (!audioPlayer.src || !room.audioTs) return;
-
             const isPlaying = !audioPlayer.paused;
             const elapsed = (Date.now() - room.audioTs) / 1000;
             const target = (room.audioPos || 0) + (room.audioPaused ? 0 : elapsed);
-
-            if (Math.abs((audioPlayer.currentTime || 0) - target) > 1.5) {
-                audioPlayer.currentTime = Math.min(target, 30);
-            }
-
+            if (Math.abs((audioPlayer.currentTime || 0) - target) > 1.5) audioPlayer.currentTime = Math.min(target, 30);
             if (room.audioPaused && isPlaying) audioPlayer.pause();
             if (!room.audioPaused && !isPlaying && target < 30) {
-                const playPromise = audioPlayer.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(e => console.warn('Sync autoplay prevented by browser'));
-                }
+                const p = audioPlayer.play();
+                if (p !== undefined) p.catch(() => console.warn('Sync autoplay prevented'));
             }
         }
 
@@ -1580,11 +1921,52 @@
             el.textContent = msg; el.classList.add('show');
             setTimeout(() => el.classList.remove('show'), dur);
         }
-        function screen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+        function screen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
         function showLoading(msg = 'טוען') { document.getElementById('loadingText').textContent = msg; document.getElementById('loadingOverlay').classList.remove('hidden'); }
         function hideLoading() { document.getElementById('loadingOverlay').classList.add('hidden'); }
         function shuffle(a) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[b[i], b[j]] = [b[j], b[i]] } return b; }
         window.copyCode = () => { navigator.clipboard.writeText(roomCode).catch(() => { }); toast('הועתק! 📋'); };
+
+        async function setupPresenceForRoom() {
+            if (!roomCode) return;
+
+            const presenceRef = ref(db, `rooms/${roomCode}/presence/${myId}`);
+
+            // כניסה/חזרה
+            try {
+                await set(presenceRef, { connected: true, lastSeen: serverTimestamp() });
+            } catch { }
+
+            // ניתוק בטעות / סגירת דפדפן / איבוד רשת:
+            // רק מסמן disconnected — לא מוחק players, לא מוחק joinOrder
+            try {
+                onDisconnect(presenceRef).set({ connected: false, lastSeen: serverTimestamp() });
+            } catch { }
+        }
+
+        function scheduleGuessDraftWrite(immediate = false) {
+            if (!roomCode) return;
+            const a = document.getElementById('guessArtist')?.value ?? '';
+            const t = document.getElementById('guessTitle')?.value ?? '';
+            const payload = { aGuess: a.trim(), tGuess: t.trim(), ts: Date.now() };
+
+            const write = async () => {
+                if (!roomCode) return;
+                await update(ref(db, `rooms/${roomCode}/guessDrafts/${myId}`), payload);
+            };
+
+            if (immediate) {
+                if (guessDraftTimer) { clearTimeout(guessDraftTimer); guessDraftTimer = null; }
+                write().catch(() => { });
+                return;
+            }
+
+            if (guessDraftTimer) clearTimeout(guessDraftTimer);
+            guessDraftTimer = setTimeout(() => write().catch(() => { }), 220);
+        }
 
         window.createRoom = async () => {
             const name = document.getElementById('createName').value.trim();
@@ -1597,23 +1979,19 @@
             if (!snap.exists()) { hideLoading(); document.getElementById('createError').textContent = '❌ אין שירים בדאטאבייס.'; return; }
             let songs = Object.entries(snap.val()).map(([id, s]) => ({ dbId: id, ...s }));
             if (g !== 'all') songs = songs.filter(s => s.genre === g);
-
             songs = songs.filter(s => s.preview_url && typeof s.preview_url === 'string' && s.preview_url.length > 5);
-
             songs = shuffle(songs);
             if (songs.length < 5) { hideLoading(); document.getElementById('createError').textContent = '❌ אין מספיק שירים תקינים בדאטאבייס.'; return; }
-            const songsForRoom = songs.map(s => ({
-                dbId: s.dbId, title: s.title, artist: s.artist, year: s.year, genre: s.genre,
-                preview_url: s.preview_url
-            }));
+            const songsForRoom = songs.map(s => ({ dbId: s.dbId, title: s.title, artist: s.artist, year: s.year, genre: s.genre, preview_url: s.preview_url }));
             await set(ref(db, `rooms/${roomCode}`), {
                 host: myId, status: 'waiting', genre: g,
-                songs: songsForRoom,
-                songIndex: 0, turnIndex: 0, winTarget: selectedWin,
+                songs: songsForRoom, songIndex: 0, turnIndex: 0, winTarget: selectedWin,
                 playedSongs: {},
+                joinOrder: [myId],
                 players: { [myId]: { name, score: 1, tokens: 0, isHost: true } }
             });
             hideLoading();
+            await setupPresenceForRoom();
             listenRoom(); screen('waitScreen');
             document.getElementById('displayCode').textContent = roomCode;
         };
@@ -1625,7 +2003,12 @@
             const snap = await get(ref(db, `rooms/${code}`));
             if (!snap.exists() || snap.val().status !== 'waiting') { document.getElementById('joinError').textContent = 'חדר לא פנוי'; return; }
             myName = name; isHost = false; roomCode = code;
+            const currentOrder = snap.val().joinOrder || [];
+            if (!currentOrder.includes(myId)) {
+                await update(ref(db, `rooms/${code}`), { joinOrder: [...currentOrder, myId] });
+            }
             await update(ref(db, `rooms/${code}/players/${myId}`), { name, score: 1, tokens: 0, isHost: false });
+            await setupPresenceForRoom();
             listenRoom(); screen('waitScreen');
             document.getElementById('displayCode').textContent = roomCode;
         };
@@ -1650,6 +2033,8 @@
                     updates[`rooms/${code}/playedSongs/${s.dbId}`] = true;
                     updates[`rooms/${code}/turnState`] = 'guessing';
                     updates[`rooms/${code}/guesses`] = null;
+                    updates[`rooms/${code}/guessDrafts`] = null;
+                    updates[`rooms/${code}/bets`] = null;
                     updates[`rooms/${code}/audioPos`] = 0;
                     updates[`rooms/${code}/audioPaused`] = false;
                     updates[`rooms/${code}/audioTs`] = Date.now();
@@ -1663,11 +2048,12 @@
         }
 
         window.startGame = async () => {
+            closeHowToOnStart();
             showLoading('מכין שירים...');
             const room = (await get(roomRef)).val();
             const updates = {};
             let si = 0;
-            const pids = Object.keys(room.players);
+            const pids = room.joinOrder || Object.keys(room.players);
             pids.forEach(pid => {
                 const starterSong = room.songs[si++];
                 updates[`rooms/${roomCode}/players/${pid}/timeline`] = [{ title: starterSong.title, artist: starterSong.artist, year: starterSong.year }];
@@ -1686,26 +2072,88 @@
 
         function handleRoom(room) {
             const players = Object.entries(room.players || {}).map(([id, p]) => ({ id, ...p }));
+
+            // אם אין שחקנים בכלל — מחק חדר וחזור ללובי
+            if (room && room.players && Object.keys(room.players).length === 0) {
+                remove(ref(db, `rooms/${roomCode}`)).catch(() => { });
+                screen('lobbyScreen');
+                return;
+            }
+
+            // WAITING
             if (room.status === 'waiting') {
-                document.getElementById('waitChips').innerHTML = players.map(p => `<div class="chip${p.isHost ? ' host' : ''}">${p.isHost ? '👑 ' : ''}${p.name}</div>`).join('');
+                document.getElementById('waitChips').innerHTML = players
+                    .map(p => `<div class="chip${p.isHost ? ' host' : ''}">${p.isHost ? '👑 ' : ''}${p.name}</div>`)
+                    .join('');
+
                 const winTarget = room.winTarget || 8;
                 const GL = { all: 'הכול', hits: 'הכי גדולים', pop: 'פופ', rock: 'רוק', mizrahi: 'מזרחי', hiphop: 'היפ הופ', electronic: 'אלקטרוני' };
-                document.getElementById('gameInfoBadges').innerHTML = `<div class="info-badge">🎵 ז'אנר: <span>${GL[room.genre] || room.genre}</span></div><div class="info-badge">🎯 ניצחון: <span>${winTarget} קלפים</span></div>`;
+                document.getElementById('gameInfoBadges').innerHTML =
+                    `<div class="info-badge">🎵 ז'אנר: <span>${GL[room.genre] || room.genre}</span></div>
+             <div class="info-badge">🎯 ניצחון: <span>${winTarget} קלפים</span></div>`;
+
                 if (isHost) document.getElementById('startBtn').disabled = players.length < 1;
                 document.getElementById('hostControls').style.display = isHost ? 'block' : 'none';
                 document.getElementById('guestWait').style.display = isHost ? 'none' : 'block';
                 return;
             }
+
+            // PLAYING / LOADING
             if (room.status === 'playing' || room.status === 'loading') {
-                if (!document.getElementById('gameScreen').classList.contains('active')) screen('gameScreen');
-                if (room.status === 'playing') renderGame(room, players);
+                closeHowToOnStart();
+
+                if (!document.getElementById('gameScreen').classList.contains('active')) {
+                    screen('gameScreen');
+                }
+
+                // אם נשאר מחובר אחד — סיים משחק עליו
+                const presence = room.presence || {};
+                const connectedPlayers = players.filter(p => presence[p.id]?.connected === true);
+
+                if (connectedPlayers.length === 1) {
+                    update(ref(db, `rooms/${roomCode}`), {
+                        status: 'finished',
+                        winnerId: connectedPlayers[0].id,
+                        finishedAt: Date.now()
+                    }).catch(() => { });
+                    return;
+                }
+
+                if (room.status === 'playing') {
+                    renderGame(room, players);
+                }
+                return;
             }
-            if (room.status === 'finished') showFinish(players);
+
+            // FINISHED
+            if (room.status === 'finished') {
+                showFinish(players);
+                return;
+            }
+        }
+        function groupBetsByIndex(room) {
+            const bets = room.bets || {};
+            const byIndex = {};
+            for (const [pid, bet] of Object.entries(bets)) {
+                if (!bet || typeof bet.index !== 'number') continue;
+                if (!byIndex[bet.index]) byIndex[bet.index] = [];
+                byIndex[bet.index].push(pid);
+            }
+            return byIndex;
         }
 
         function renderGame(room, players) {
             const ti = room.turnIndex || 0;
-            const pids = Object.keys(room.players);
+            const order = room.joinOrder || Object.keys(room.players || {});
+            const presence = room.presence || {};
+            const pids = order.filter(pid => presence[pid]?.connected === true);
+
+            // אם אף אחד לא מחובר, אל תתרסק
+            if (pids.length === 0) {
+                activePlayerId = '';
+                return;
+            }
+
             activePlayerId = pids[ti % pids.length];
             const isMyTurn = activePlayerId === myId;
             const activePl = players.find(p => p.id === activePlayerId);
@@ -1720,18 +2168,15 @@
 
             document.getElementById('scores').innerHTML = [...players].sort((a, b) => b.score - a.score).map(p =>
                 `<div class="sc${p.id === activePlayerId ? ' active' : ''}${p.id === myId ? ' me' : ''}">
-                    <div class="sc-n">${p.name}</div>
-                    <div class="sc-p">${p.score} <span>קלפים</span></div>
-                    <div class="coin-badge">
-                        <div class="coin-icon">🔥</div>
-                        <span>${p.tokens || 0}</span>
-                    </div>
-                </div>`
+                            <div class="sc-n">${p.name}</div>
+                            <div class="sc-p">${p.score} <span>קלפים</span></div>
+                            <div class="coin-badge"><div class="coin-icon">🔥</div><span>${p.tokens || 0}</span></div>
+                        </div>`
             ).join('');
 
             const banner = document.getElementById('banner');
             if (isMyTurn) { banner.textContent = 'התור שלך! לחץ + בציר הזמן למיקום'; banner.className = 'banner'; }
-            else { banner.textContent = `התור של ${activePl?.name} — נחש ותרוויח!`; banner.className = 'banner other'; }
+            else { banner.textContent = `התור של ${activePl?.name} — נחש ותרוויח! 🎯🪙`; banner.className = 'banner other'; }
 
             if (isMyTurn) {
                 document.getElementById('audioBar').style.display = 'flex';
@@ -1744,15 +2189,36 @@
                 document.getElementById('listenerWave').style.display = isPlaying ? 'flex' : 'none';
             }
 
+            const myBet = room.bets?.[myId];
             const tl = activePl?.timeline || [];
+            const betsByIndex = groupBetsByIndex(room);
             let tlHtml = '';
-            if (isMyTurn && room.turnState === 'guessing') tlHtml += dropZone(0, tl);
-            tl.forEach((c, i) => {
-                tlHtml += `<div class="tl-card"><div class="tl-y">${c.year}</div><div class="tl-t">${c.title}</div><div class="tl-a">${c.artist}</div></div>`;
-                if (isMyTurn && room.turnState === 'guessing') tlHtml += dropZone(i + 1, tl);
-            });
+
+            if (isMyTurn && room.turnState === 'guessing') {
+                // שחקן התור לא רואה שום הימור (קריטי)
+                tlHtml += dropZone(0, tl);
+                tl.forEach((c, i) => {
+                    tlHtml += `<div class="tl-card"><div class="tl-y">${c.year}</div><div class="tl-t">${c.title}</div><div class="tl-a">${c.artist}</div></div>`;
+                    tlHtml += dropZone(i + 1, tl);
+                });
+            } else if (!isMyTurn && room.turnState === 'guessing') {
+                const myTokens = (room.players[myId]?.tokens) ?? 0;
+                const canBet = myTokens >= 1 && !myBet;
+                tlHtml += betDropZone(0, tl, room, betsByIndex, myBet, canBet);
+                tl.forEach((c, i) => {
+                    tlHtml += `<div class="tl-card"><div class="tl-y">${c.year}</div><div class="tl-t">${c.title}</div><div class="tl-a">${c.artist}</div></div>`;
+                    tlHtml += betDropZone(i + 1, tl, room, betsByIndex, myBet, canBet);
+                });
+            } else {
+                tl.forEach((c) => {
+                    tlHtml += `<div class="tl-card"><div class="tl-y">${c.year}</div><div class="tl-t">${c.title}</div><div class="tl-a">${c.artist}</div></div>`;
+                });
+            }
+
             document.getElementById('tlContainer').innerHTML = tlHtml;
-            document.getElementById('tlTitle').textContent = isMyTurn ? 'ציר הזמן שלך — לחץ + למיקום' : `ציר של ${activePl?.name}`;
+            document.getElementById('tlTitle').textContent = isMyTurn
+                ? 'ציר הזמן שלך — לחץ + למיקום'
+                : `ציר של ${activePl?.name}${!isMyTurn && room.turnState === 'guessing' ? ' — לחץ 🪙 לנחש מיקום' : ''}`;
 
             document.getElementById('tokenRow').style.display = (isMyTurn && room.turnState === 'guessing') ? 'flex' : 'none';
             if (isMyTurn) {
@@ -1761,28 +2227,30 @@
             }
 
             const guessBar = document.getElementById('guessBar');
-            const myGuess = room.guesses?.[myId];
             if (room.turnState === 'guessing') {
                 guessBar.style.display = 'block';
-                if (myGuess) {
-                    document.querySelector('.guess-inputs-row').style.display = 'none';
-                    document.getElementById('guessSubmittedMsg').style.display = 'block';
-                } else {
-                    document.querySelector('.guess-inputs-row').style.display = 'flex';
-                    document.getElementById('guessSubmittedMsg').style.display = 'none';
-                    document.getElementById('submitGuessBtn').disabled = false;
-                }
-            } else { guessBar.style.display = 'none'; }
+                document.querySelector('.guess-inputs-row').style.display = 'flex';
+                document.getElementById('guessSubmittedMsg').style.display = 'none';
+                // Make ✓ optional (draft autosaves while typing)
+                document.getElementById('submitGuessBtn').style.display = 'none';
+            } else {
+                guessBar.style.display = 'none';
+            }
 
             if (room.turnState !== 'guessing') {
                 document.getElementById('placeConfirm').classList.remove('show');
+                document.getElementById('betConfirm').classList.remove('show');
                 selectedDropIndex = null;
+                selectedBetIndex = null;
             }
 
             if (room.turnState === 'guessing' && currentTurnState !== 'guessing') {
                 currentTurnState = 'guessing';
+                if (autoNextTimer) { clearTimeout(autoNextTimer); autoNextTimer = null; }
                 selectedDropIndex = null;
+                selectedBetIndex = null;
                 document.getElementById('placeConfirm').classList.remove('show');
+                document.getElementById('betConfirm').classList.remove('show');
                 document.getElementById('flipCard').classList.remove('flipped');
                 document.getElementById('resultBox').classList.remove('show');
                 document.getElementById('guessArtist').value = '';
@@ -1790,6 +2258,7 @@
                 document.getElementById('submitGuessBtn').disabled = false;
                 document.getElementById('guessSubmittedMsg').style.display = 'none';
                 document.querySelector('.guess-inputs-row').style.display = 'flex';
+                document.getElementById('submitGuessBtn').style.display = 'none';
                 document.getElementById('audioTitle').textContent = '🎵 שיר לא ידוע';
                 document.getElementById('audioArtist').textContent = '— נחש מי זה —';
                 document.getElementById('nextBtn').style.display = 'none';
@@ -1804,14 +2273,24 @@
 
             if (room.turnState === 'revealed' && currentTurnState !== 'revealed') {
                 currentTurnState = 'revealed';
-                revealCard(room.currentSong, room.lastResult, room.players);
+                revealCard(room.currentSong, room.lastResult);
                 guessBar.style.display = 'none';
                 document.getElementById('tokenRow').style.display = 'none';
                 document.getElementById('placeConfirm').classList.remove('show');
-                if (isHost) {
+                document.getElementById('betConfirm').classList.remove('show');
+                // Next is controlled by the active player (who just placed), not by host.
+                if (isMyTurn) {
                     document.getElementById('nextBtn').style.display = 'block';
                     const maxS = Math.max(...players.map(p => p.score));
                     document.getElementById('nextBtn').textContent = maxS >= winTarget ? '🏁 סיים' : 'התור הבא ▶';
+                }
+                // Auto-advance after 5s if someone guessed something correctly (any score > 0).
+                const anyCorrectGuess = (room.lastResult?.tokenResults || []).some(r => (r?.score || 0) > 0);
+                if (isMyTurn && anyCorrectGuess) {
+                    autoNextTimer = setTimeout(() => {
+                        autoNextTimer = null;
+                        nextTurn().catch(() => { });
+                    }, 5000);
                 }
             }
 
@@ -1828,9 +2307,55 @@
             else yearHint = 'כאן';
             const isSelected = selectedDropIndex === index;
             return `<div class="tl-drop${isSelected ? ' selected' : ''}" onclick="selectDrop(${index},'${yearHint}')">
-                                    <div class="tl-drop-inner">+</div>
-                                    <div class="tl-drop-year">${yearHint}</div>
-                                </div>`;
+                        <div class="tl-drop-inner">+</div>
+                        <div class="tl-drop-year">${yearHint}</div>
+                    </div>`;
+        }
+
+        function betDropZone(index, tl, room, betsByIndex, myBet, canBet) {
+            const prevYear = index > 0 ? tl[index - 1].year : null;
+            const nextYear = index < tl.length ? tl[index].year : null;
+            let yearHint = '';
+            if (prevYear && nextYear) yearHint = `${prevYear}–${nextYear}`;
+            else if (prevYear) yearHint = `>${prevYear}`;
+            else if (nextYear) yearHint = `<${nextYear}`;
+            else yearHint = 'כאן';
+
+            const bettors = (betsByIndex[index] || []).filter(pid => pid !== activePlayerId);
+            const bettorNames = bettors.map(pid => room.players?.[pid]?.name).filter(Boolean);
+            const count = bettorNames.length;
+
+            const isMyBetHere = myBet && myBet.index === index;
+            const isSelected = selectedBetIndex === index;
+
+            const stackHtml = count
+                ? `<div class="tl-bet-stack">${bettorNames.map(n => `<div class="bet-chip${(room.bets?.[myId]?.index === index && room.players?.[myId]?.name === n) ? ' me' : ''}">${n}</div>`).join('')}</div>`
+                : `<div class="tl-bet-stack"></div>`;
+
+            if (isMyBetHere) {
+                return `<div class="tl-bet-drop locked" title="ההימור שלך">
+                            ${count ? `<div class="bet-count">${count}</div>` : ``}
+                            <div class="tl-bet-inner">🪙</div>
+                            <div class="tl-bet-year">${yearHint}</div>
+                            ${stackHtml}
+                        </div>`;
+            }
+
+            if (!canBet) {
+                return `<div class="tl-bet-drop disabled">
+                            ${count ? `<div class="bet-count">${count}</div>` : ``}
+                            <div class="tl-bet-inner">🪙</div>
+                            <div class="tl-bet-year">${yearHint}</div>
+                            ${stackHtml}
+                        </div>`;
+            }
+
+            return `<div class="tl-bet-drop${isSelected ? ' selected' : ''}" data-bet-label="${yearHint}" onclick="selectBet(${index},this.dataset.betLabel)">
+                        ${count ? `<div class="bet-count">${count}</div>` : ``}
+                        <div class="tl-bet-inner">🪙</div>
+                        <div class="tl-bet-year">${yearHint}</div>
+                        ${stackHtml}
+                    </div>`;
         }
 
         window.selectDrop = (index, label) => {
@@ -1844,11 +2369,42 @@
             document.getElementById('placeConfirm').classList.add('show');
         };
 
+        window.selectBet = (index, label) => {
+            selectedBetIndex = index;
+            document.querySelectorAll('.tl-bet-drop:not(.locked):not(.disabled)').forEach(d => {
+                const oc = d.getAttribute('onclick');
+                const match = oc && oc.match(/selectBet\((\d+)/);
+                d.classList.toggle('selected', !!(match && parseInt(match[1]) === index));
+            });
+            document.getElementById('betYearLabel').textContent = label;
+            document.getElementById('betConfirm').classList.add('show');
+        };
+
         window.confirmPlace = async () => {
             if (selectedDropIndex === null) { toast('בחר מיקום קודם'); return; }
+            // Freeze whatever everyone typed so far by forcing local draft write right now.
+            scheduleGuessDraftWrite(true);
             await placeSong(selectedDropIndex);
             selectedDropIndex = null;
             document.getElementById('placeConfirm').classList.remove('show');
+        };
+
+        window.confirmBet = async () => {
+            if (selectedBetIndex === null) { toast('בחר מיקום קודם'); return; }
+            const room = (await get(roomRef)).val();
+            const myTokens = room.players[myId]?.tokens || 0;
+            if (myTokens < 1) { toast('אין מספיק מטבעות!'); return; }
+            const existingBet = room.bets?.[myId];
+            if (existingBet) { toast('כבר הימרת בתור הזה!'); return; }
+
+            const updates = {};
+            updates[`rooms/${roomCode}/players/${myId}/tokens`] = myTokens - 1;
+            updates[`rooms/${roomCode}/bets/${myId}`] = { index: selectedBetIndex, placedAt: Date.now() };
+            await update(ref(db), updates);
+
+            selectedBetIndex = null;
+            document.getElementById('betConfirm').classList.remove('show');
+            toast('🎯 הימור נשלח! 1🪙 הופחת');
         };
 
         window.placeSong = async (index) => {
@@ -1882,13 +2438,16 @@
         async function processTurn(isValid, insertIndex, room) {
             const song = room.currentSong;
             const updates = {};
+
             if (isValid) {
                 const tl = [...(room.players[activePlayerId].timeline || [])];
                 tl.splice(insertIndex, 0, { title: song.title, artist: song.artist, year: song.year });
                 updates[`rooms/${roomCode}/players/${activePlayerId}/timeline`] = tl;
                 updates[`rooms/${roomCode}/players/${activePlayerId}/score`] = tl.length;
             }
-            const guesses = room.guesses || {};
+
+            // Score based on "what was typed so far" at placement time.
+            const guesses = room.guessDrafts || room.guesses || {};
             const tokenResults = [];
             Object.keys(room.players).forEach(pid => {
                 const g = guesses[pid]; if (!g) return;
@@ -1898,31 +2457,94 @@
                     tokenResults.push({ name: room.players[pid].name, score: result.score, titleMatch: result.titleMatch, artistMatch: result.artistMatch });
                 }
             });
-            updates[`rooms/${roomCode}/lastResult`] = { success: isValid, tokenResults, song: { title: song.title, artist: song.artist } };
+            // Persist frozen guesses for this turn (for transparency in results/debugging).
+            updates[`rooms/${roomCode}/guesses`] = guesses;
+
+            const bets = room.bets || {};
+            const betResults = [];
+            const tlBefore = room.players[activePlayerId]?.timeline || [];
+
+            // There can be multiple "valid" slots when years equal.
+            const validIndices = [];
+            for (let i = 0; i <= tlBefore.length; i++) {
+                const prevYear = i > 0 ? tlBefore[i - 1].year : null;
+                const nextYear = i < tlBefore.length ? tlBefore[i].year : null;
+                const okPrev = prevYear === null || prevYear <= song.year;
+                const okNext = nextYear === null || song.year <= nextYear;
+                if (okPrev && okNext) validIndices.push(i);
+            }
+
+            const activeCorrect = isValid && validIndices.includes(insertIndex);
+
+            Object.keys(bets).forEach(pid => {
+                if (pid === activePlayerId) return;
+                const bet = bets[pid];
+                const betIndex = bet.index;
+                const betCorrect = validIndices.includes(betIndex);
+
+                // Priority rule:
+                // - If active player is correct: ALL bets lose (no refund, no card).
+                // - If active player is wrong: betCorrect wins a card; otherwise loses.
+                if (activeCorrect) {
+                    betResults.push({ name: room.players[pid].name, result: 'lose' });
+                    return;
+                }
+
+                if (betCorrect) {
+                    const spectatorTl = [...(room.players[pid]?.timeline || [])];
+                    spectatorTl.splice(betIndex, 0, { title: song.title, artist: song.artist, year: song.year });
+                    updates[`rooms/${roomCode}/players/${pid}/timeline`] = spectatorTl;
+                    updates[`rooms/${roomCode}/players/${pid}/score`] = spectatorTl.length;
+                    betResults.push({ name: room.players[pid].name, result: 'win' });
+                } else {
+                    betResults.push({ name: room.players[pid].name, result: 'lose' });
+                }
+            });
+
+            updates[`rooms/${roomCode}/lastResult`] = {
+                success: isValid,
+                tokenResults,
+                betResults,
+                song: { title: song.title, artist: song.artist }
+            };
             updates[`rooms/${roomCode}/turnState`] = 'revealed';
             await update(ref(db), updates);
         }
 
-        function revealCard(song, res, playersMap) {
+        function revealCard(song, res) {
             document.getElementById('flipCard').classList.add('flipped');
             document.getElementById('fbTitle').textContent = song.title;
             document.getElementById('fbArtist').textContent = song.artist;
             document.getElementById('fbYear').textContent = song.year;
             document.getElementById('audioTitle').textContent = song.title;
             document.getElementById('audioArtist').textContent = song.artist;
+
             const st = document.getElementById('resStatus');
             if (res.success) { st.textContent = '✅ שיבוץ מוצלח!'; st.className = 'res-status ok'; }
             else { st.textContent = '❌ שגיאה בציר הזמן!'; st.className = 'res-status fail'; }
+
             const tokenResults = res.tokenResults || [];
+            const betResults = res.betResults || [];
             let html = '';
-            if (!tokenResults.length) { html = '<span style="color:var(--muted)">אף אחד לא ניחש נכון 😅</span>'; }
-            else tokenResults.forEach(r => {
+
+            if (!tokenResults.length && !betResults.length) html = '<span style="color:var(--muted)">אף אחד לא ניחש נכון 😅</span>';
+
+            tokenResults.forEach(r => {
                 const parts = [];
                 if (r.titleMatch) parts.push('שם שיר ✓');
                 if (r.artistMatch) parts.push('אמן ✓');
                 const cls = r.score === 1 ? 'guess-winner' : 'guess-partial';
                 html += `<div><span class="${cls}">${r.name}</span> ניחש: ${parts.join(' + ')} → +${r.score}🪙</div>`;
             });
+
+            if (betResults.length) {
+                html += `<div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;font-size:.75rem;color:var(--muted2)">הימורי מיקום:</div>`;
+                betResults.forEach(r => {
+                    if (r.result === 'win') html += `<div><span class="guess-winner">🎉 ${r.name}</span> ניחש נכון! קיבל קלף!</div>`;
+                    else html += `<div><span style="color:var(--muted)">💸 ${r.name}</span> הפסיד את ההימור</div>`;
+                });
+            }
+
             document.getElementById('resTokens').innerHTML = html;
             document.getElementById('resultBox').classList.add('show');
         }
@@ -1933,6 +2555,8 @@
             const maxScore = Math.max(...Object.values(room.players).map(p => p.score));
             if (maxScore >= winTarget) {
                 await update(ref(db, `rooms/${roomCode}`), { status: 'finished' });
+                // Optional: delete the room a bit later (client-side best-effort).
+                setTimeout(() => remove(ref(db, `rooms/${roomCode}`)).catch(() => { }), 15000);
             } else {
                 currentTurnState = ''; stopAudio();
                 await update(ref(db, `rooms/${roomCode}`), { turnIndex: (room.turnIndex || 0) + 1 });
@@ -1944,30 +2568,59 @@
         };
 
         window.submitGuess = async () => {
-            const a = document.getElementById('guessArtist').value.trim();
-            const t = document.getElementById('guessTitle').value.trim();
-            if (!a && !t) { toast('הכנס ניחוש!'); return; }
-            await update(ref(db, `rooms/${roomCode}/guesses/${myId}`), { aGuess: a, tGuess: t });
-            document.getElementById('submitGuessBtn').disabled = true;
-            document.querySelector('.guess-inputs-row').style.display = 'none';
-            document.getElementById('guessSubmittedMsg').style.display = 'block';
-            toast('ניחוש נשלח! 🤞');
+            // Kept for backward compatibility; now just forces an immediate draft save.
+            scheduleGuessDraftWrite(true);
+            toast('נשמר ✍️');
         };
 
         function showFinish(players) {
             stopAudio();
             const sorted = [...players].sort((a, b) => b.score - a.score);
             document.getElementById('gameScreen').innerHTML = `<div class="finish-screen">
-                                    <div class="finish-trophy">🏆</div>
-                                    <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
-                                    ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
-                                    <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
-                                    <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
-                                </div>`;
+                        <div class="finish-trophy">🏆</div>
+                        <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
+                        ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
+                        <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
+                        <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
+                    </div>`;
         }
 
-        window.leaveRoom = () => location.reload();
+        window.leaveRoom = async () => {
+            if (!roomCode) return location.reload();
+            // Remove me from joinOrder so turns skip me.
+            try {
+                const roomBefore = (await get(ref(db, `rooms/${roomCode}`))).val();
+                const order = roomBefore?.joinOrder || [];
+                const newOrder = order.filter(pid => pid !== myId);
+                if (order.length !== newOrder.length) {
+                    await update(ref(db, `rooms/${roomCode}`), { joinOrder: newOrder });
+                }
+            } catch { }
 
+            try { await remove(ref(db, `rooms/${roomCode}/presence/${myId}`)); } catch { }
+            try { await remove(ref(db, `rooms/${roomCode}/players/${myId}`)); } catch { }
+            try { await remove(ref(db, `rooms/${roomCode}/guessDrafts/${myId}`)); } catch { }
+            try { await remove(ref(db, `rooms/${roomCode}/bets/${myId}`)); } catch { }
+            try { await remove(ref(db, `rooms/${roomCode}/guesses/${myId}`)); } catch { }
+
+            // If I was the last player, delete the whole room.
+            try {
+                const room = (await get(ref(db, `rooms/${roomCode}`))).val();
+                const left = room?.players ? Object.keys(room.players).length : 0;
+                if (left === 0) {
+                    await remove(ref(db, `rooms/${roomCode}`));
+                } else if (left === 1 && (room?.status === 'playing' || room?.status === 'loading')) {
+                    const winnerId = Object.keys(room.players)[0];
+                    await update(ref(db, `rooms/${roomCode}`), { status: 'finished', winnerId, finishedAt: Date.now() });
+                }
+            } catch { }
+            location.reload();
+        };
+
+        // Autosave guess drafts while typing
+        document.getElementById('guessArtist')?.addEventListener('input', () => scheduleGuessDraftWrite(false));
+        document.getElementById('guessTitle')?.addEventListener('input', () => scheduleGuessDraftWrite(false));
     </script>
 </body>
 </html>
+
