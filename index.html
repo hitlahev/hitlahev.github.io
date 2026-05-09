@@ -258,6 +258,505 @@
                 margin-top: 0
             }
 
+        /* ── HOW TO PLAY BUTTON ── */
+        .btn-how {
+            width: 100%;
+            padding: 10px;
+            border: 1.5px solid rgba(255,201,64,.3);
+            background: rgba(255,201,64,.06);
+            color: var(--gold);
+            font-family: 'Heebo',sans-serif;
+            font-size: .88rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .2s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: .5px;
+        }
+
+            .btn-how:hover {
+                background: rgba(255,201,64,.14);
+                border-color: rgba(255,201,64,.6);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 20px rgba(255,201,64,.12);
+            }
+
+        .btn-how-icon {
+            font-size: 1rem;
+            animation: spin-slow 8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin-slow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── HOW TO PLAY MODAL ── */
+        .htp-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0);
+            backdrop-filter: blur(0px);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            pointer-events: none;
+            transition: background .4s ease, backdrop-filter .4s ease;
+        }
+
+            .htp-overlay.open {
+                background: rgba(0,0,6,.75);
+                backdrop-filter: blur(8px);
+                pointer-events: all;
+            }
+
+        .htp-sheet {
+            width: 100%;
+            max-width: 480px;
+            max-height: 92vh;
+            background: #0d0d18;
+            border: 1px solid rgba(255,255,255,.1);
+            border-bottom: none;
+            border-radius: 28px 28px 0 0;
+            overflow: hidden;
+            transform: translateY(110%);
+            transition: transform .5s cubic-bezier(.16,1,.3,1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .htp-overlay.open .htp-sheet {
+            transform: translateY(0);
+        }
+
+        .htp-drag {
+            width: 40px;
+            height: 4px;
+            background: rgba(255,255,255,.15);
+            border-radius: 4px;
+            margin: 12px auto 0;
+            flex-shrink: 0;
+        }
+
+        .htp-header {
+            padding: 18px 24px 16px;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            flex-shrink: 0;
+        }
+
+        .htp-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .htp-subtitle {
+            font-size: .75rem;
+            color: var(--muted2);
+            margin-top: 4px;
+            letter-spacing: .5px;
+        }
+
+        .htp-body {
+            overflow-y: auto;
+            padding: 20px 20px 36px;
+            flex: 1;
+            -webkit-overflow-scrolling: touch;
+        }
+
+            .htp-body::-webkit-scrollbar {
+                width: 3px;
+            }
+
+            .htp-body::-webkit-scrollbar-thumb {
+                background: rgba(255,255,255,.08);
+                border-radius: 3px;
+            }
+
+        /* Sections */
+        .htp-section {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .htp-overlay.open .htp-section {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+            .htp-overlay.open .htp-section:nth-child(1) {
+                transition-delay: .1s;
+            }
+
+            .htp-overlay.open .htp-section:nth-child(2) {
+                transition-delay: .18s;
+            }
+
+            .htp-overlay.open .htp-section:nth-child(3) {
+                transition-delay: .26s;
+            }
+
+            .htp-overlay.open .htp-section:nth-child(4) {
+                transition-delay: .34s;
+            }
+
+            .htp-overlay.open .htp-section:nth-child(5) {
+                transition-delay: .42s;
+            }
+
+            .htp-overlay.open .htp-section:nth-child(6) {
+                transition-delay: .50s;
+            }
+
+        .htp-sec-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .htp-sec-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+            .htp-sec-icon.red {
+                background: rgba(255,64,96,.15);
+                border: 1px solid rgba(255,64,96,.3);
+            }
+
+            .htp-sec-icon.gold {
+                background: rgba(255,201,64,.12);
+                border: 1px solid rgba(255,201,64,.3);
+            }
+
+            .htp-sec-icon.blue {
+                background: rgba(77,159,255,.12);
+                border: 1px solid rgba(77,159,255,.3);
+            }
+
+            .htp-sec-icon.green {
+                background: rgba(0,230,118,.12);
+                border: 1px solid rgba(0,230,118,.3);
+            }
+
+            .htp-sec-icon.purple {
+                background: rgba(180,100,255,.12);
+                border: 1px solid rgba(180,100,255,.3);
+            }
+
+        .htp-sec-title {
+            font-size: 1rem;
+            font-weight: 900;
+        }
+
+        .htp-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .step-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--red);
+            color: #fff;
+            font-size: .72rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-text {
+            font-size: .85rem;
+            line-height: 1.55;
+            color: rgba(240,240,240,.85);
+        }
+
+            .step-text strong {
+                color: #fff;
+            }
+
+        /* Timeline demo */
+        .tl-demo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow-x: auto;
+            padding: 4px 2px 8px;
+            scrollbar-width: none;
+        }
+
+            .tl-demo::-webkit-scrollbar {
+                display: none;
+            }
+
+        .tl-demo-card {
+            flex: 0 0 auto;
+            background: var(--s2);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: center;
+            min-width: 72px;
+        }
+
+        .tl-demo-year {
+            font-family: 'DM Mono',monospace;
+            font-size: 1rem;
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        .tl-demo-title {
+            font-size: .58rem;
+            font-weight: 700;
+            margin-top: 2px;
+            line-height: 1.2;
+        }
+
+        .tl-demo-arrow {
+            flex: 0 0 auto;
+            padding: 0 6px;
+            color: var(--muted);
+            font-size: .9rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+        }
+
+        .tl-demo-drop {
+            flex: 0 0 auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px dashed var(--red);
+            background: rgba(255,64,96,.1);
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1rem;
+            margin: 0 4px;
+            animation: pulse-drop 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-drop {
+            0%,100% {
+                box-shadow: 0 0 0 0 rgba(255,64,96,0);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(255,64,96,.15);
+            }
+        }
+
+        .tl-demo-new {
+            flex: 0 0 auto;
+            background: rgba(255,64,96,.15);
+            border: 1.5px solid var(--red);
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: center;
+            min-width: 72px;
+            animation: glow-new 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-new {
+            0%,100% {
+                box-shadow: 0 0 0 0 rgba(255,64,96,0);
+            }
+
+            50% {
+                box-shadow: 0 0 12px rgba(255,64,96,.3);
+            }
+        }
+
+        /* Coin system */
+        .coin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .coin-item {
+            background: var(--s2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .coin-item-icon {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+
+        .coin-item-title {
+            font-size: .8rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .coin-item-desc {
+            font-size: .68rem;
+            color: var(--muted2);
+            line-height: 1.4;
+        }
+
+        .coin-earn {
+            border-color: rgba(255,201,64,.25);
+        }
+
+        .coin-spend {
+            border-color: rgba(77,159,255,.2);
+        }
+
+        /* Bet demo */
+        .bet-demo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .bet-tag {
+            background: rgba(77,159,255,.1);
+            border: 1px solid rgba(77,159,255,.3);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: .75rem;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        /* Win condition */
+        .win-bar {
+            background: var(--s2);
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .win-bar-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .win-bar-text {
+            font-size: .82rem;
+            line-height: 1.5;
+            color: rgba(240,240,240,.85);
+        }
+
+            .win-bar-text strong {
+                color: var(--gold);
+            }
+
+        /* Score preview */
+        .score-mini {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--s2);
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 6px;
+        }
+
+        .score-mini-name {
+            font-size: .8rem;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .score-mini-cards {
+            font-size: .8rem;
+            color: var(--muted2);
+        }
+
+        .score-mini-coins {
+            font-size: .75rem;
+        }
+
+        .score-bar {
+            height: 3px;
+            background: var(--s3);
+            border-radius: 3px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .htp-close {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 0 auto 16px;
+            padding: 13px;
+            background: var(--red);
+            color: #fff;
+            font-family: 'Heebo',sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .2s;
+            flex-shrink: 0;
+        }
+
+            .htp-close:hover {
+                background: #ff4040;
+                box-shadow: 0 6px 24px rgba(255,0,0,.35);
+            }
+
         .err {
             color: var(--red);
             font-size: .8rem;
@@ -1375,6 +1874,213 @@
         <div class="loading-text loading-dots" id="loadingText">טוען</div>
     </div>
 
+    <!-- ══════════════════════════════════════════ -->
+    <!-- HOW TO PLAY MODAL                          -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="htp-overlay" id="htpOverlay" onclick="htpClickOutside(event)">
+        <div class="htp-sheet" id="htpSheet">
+            <div class="htp-drag"></div>
+            <div class="htp-header">
+                <div class="htp-title">🔥 איך משחקים?</div>
+                <div class="htp-subtitle">כל מה שצריך לדעת לפני שמתחילים</div>
+            </div>
+
+            <div class="htp-body">
+
+                <!-- 1. מטרת המשחק -->
+                <div class="htp-section">
+                    <div class="htp-sec-header">
+                        <div class="htp-sec-icon red">🏆</div>
+                        <div class="htp-sec-title">מטרת המשחק</div>
+                    </div>
+                    <div class="htp-card">
+                        <div class="win-bar">
+                            <div class="win-bar-icon">🎯</div>
+                            <div class="win-bar-text">הראשון שמגיע ל-<strong><span id="number_to_win">8</span> קלפים בציר הזמן</strong> שלו — מנצח! (ניתן לשנות את המטרה בהגדרות החדר)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. מהלך תור -->
+                <div class="htp-section">
+                    <div class="htp-sec-header">
+                        <div class="htp-sec-icon red">🎵</div>
+                        <div class="htp-sec-title">מהלך תור</div>
+                    </div>
+                    <div class="htp-card">
+                        <div class="step-list">
+                            <div class="step-item">
+                                <div class="step-num">1</div>
+                                <div class="step-text">שחקן התור שומע <strong>30 שניות</strong> מהשיר הנסתר ומנסה לזהות אותו</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">2</div>
+                                <div class="step-text">הוא בוחר היכן השיר <strong>נכנס לציר הזמן</strong> שלו — לחיצה על <strong>+</strong> בין הקלפים</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">3</div>
+                                <div class="step-text">הקלף מתהפך — מתגלה השם, האמן והשנה. <strong>שיבוץ נכון = קלף חדש בציר!</strong></div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">4</div>
+                                <div class="step-text">שיבוץ שגוי = לא מרוויחים קלף. התור עובר לשחקן הבא.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline demo visual -->
+                    <div class="htp-card" style="padding: 12px 10px;">
+                        <div style="font-size:.68rem;color:var(--muted2);margin-bottom:8px;font-weight:700;letter-spacing:.5px;">דוגמת ציר זמן →</div>
+                        <div class="tl-demo">
+                            <div class="tl-demo-card">
+                                <div class="tl-demo-year">1982</div>
+                                <div class="tl-demo-title">יום שישי - בנזין</div>
+                            </div>
+                            <div class="tl-demo-arrow">—</div>
+                            <div class="tl-demo-drop">+</div>
+                            <div class="tl-demo-arrow">—</div>
+                            <div class="tl-demo-card">
+                                <div class="tl-demo-year">1993</div>
+                                <div class="tl-demo-title">מישהו שומע אותי - איפה הילד</div>
+                            </div>
+                            <div class="tl-demo-arrow">—</div>
+                            <div class="tl-demo-new">
+                                <div class="tl-demo-year" style="color:var(--red);">1995</div>
+                                <div class="tl-demo-title">מכה אפורה - מוניקה סקס</div>
+                            </div>
+                            <div class="tl-demo-arrow">—</div>
+                            <div class="tl-demo-card">
+                                <div class="tl-demo-year">2010</div>
+                                <div class="tl-demo-title">מכתב לאחי - עילי בוטנר</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. מטבעות 🪙 -->
+                <div class="htp-section">
+                    <div class="htp-sec-header">
+                        <div class="htp-sec-icon gold">🪙</div>
+                        <div class="htp-sec-title">מטבעות — איך מרוויחים ומשתמשים</div>
+                    </div>
+                    <div class="htp-card">
+                        <div style="font-size:.75rem;color:var(--muted2);margin-bottom:10px;font-weight:700;">מרוויחים מטבעות על ניחוש נכון של השיר:</div>
+                        <div class="coin-grid">
+                            <div class="coin-item coin-earn">
+                                <div class="coin-item-icon">🎤 + 🎵</div>
+                                <div class="coin-item-title" style="color:var(--gold)">+1 🪙</div>
+                                <div class="coin-item-desc">ניחשת נכון גם את האמן <strong>וגם</strong> את שם השיר</div>
+                            </div>
+                            <div class="coin-item coin-earn">
+                                <div class="coin-item-icon">🎤 <span style="font-size:.6rem">או</span> 🎵</div>
+                                <div class="coin-item-title" style="color:var(--gold)">+0.5 🪙</div>
+                                <div class="coin-item-desc">ניחשת רק אחד מהשניים — אמן <strong>או</strong> שיר</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="htp-card">
+                        <div style="font-size:.75rem;color:var(--muted2);margin-bottom:10px;font-weight:700;">מוציאים מטבעות על כוחות מיוחדים:</div>
+                        <div class="coin-grid">
+                            <div class="coin-item coin-spend">
+                                <div class="coin-item-icon">🔄</div>
+                                <div class="coin-item-title" style="color:var(--blue)">החלף שיר</div>
+                                <div class="coin-item-desc">עולה <strong>1 🪙</strong> — לא בא לך? קבל שיר אחר</div>
+                            </div>
+                            <div class="coin-item coin-spend">
+                                <div class="coin-item-icon">🎁</div>
+                                <div class="coin-item-title" style="color:var(--blue)">מיקום בטוח</div>
+                                <div class="coin-item-desc">עולה <strong>3 🪙</strong> — השיר נכנס אוטומטית למיקום הנכון!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. הימורי מיקום -->
+                <div class="htp-section">
+                    <div class="htp-sec-header">
+                        <div class="htp-sec-icon blue">🎯</div>
+                        <div class="htp-sec-title">הימורי מיקום — לצופים</div>
+                    </div>
+                    <div class="htp-card">
+                        <div class="step-list">
+                            <div class="step-item">
+                                <div class="step-num">1</div>
+                                <div class="step-text">כשזה <strong>לא התור שלך</strong> — תוכל להמר על מיקום השיר בציר של השחקן הפעיל</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">2</div>
+                                <div class="step-text">לחץ על 🪙 בציר הזמן של השחקן. ההימור עולה <strong>1 🪙</strong></div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">3</div>
+                                <div class="step-text">אם <strong>השחקן טעה</strong> במיקום אך <strong>אתה ניחשת נכון</strong> — השיר נכנס לציר שלך! 🎉</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">4</div>
+                                <div class="step-text">אם השחקן שיבץ נכון — כל ההימורים מפסידים (גם אם ניחשתם נכון)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. ניחוש שיר -->
+                <div class="htp-section">
+                    <div class="htp-sec-header">
+                        <div class="htp-sec-icon green">🎧</div>
+                        <div class="htp-sec-title">ניחוש שיר</div>
+                    </div>
+                    <div class="htp-card">
+                        <div class="step-list">
+                            <div class="step-item">
+                                <div class="step-num">✍️</div>
+                                <div class="step-text"><strong>כולם יכולים לנחש</strong> בכל תור — גם בתור של שחקן אחר</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">🔍</div>
+                                <div class="step-text">הניחוש <strong>אוטומטי וסלחני</strong> — שגיאות כתיב קטנות, חלק מהשם, כולם עוברים</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">⏱️</div>
+                                <div class="step-text">הקלידו ולחצו ✓ — המערכת שומרת. רוצים לעדכן? פשוט שנו ולחצו שוב</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. טיפים -->
+                <div class="htp-section">
+                    <div class="htp-sec-header">
+                        <div class="htp-sec-icon purple">💡</div>
+                        <div class="htp-sec-title">טיפים וטריקים</div>
+                    </div>
+                    <div class="htp-card">
+                        <div class="step-list">
+                            <div class="step-item">
+                                <div class="step-num">🪙</div>
+                                <div class="step-text">שמור את ה<strong>מיקום הבטוח</strong> (3🪙) לרגע קריטי — כשאתה ממש לא בטוח בעשור</div>
+                            </div>
+                           
+                            <div class="step-item">
+                                <div class="step-num">🔄</div>
+                                <div class="step-text">שווה להחליף שיר אם אין לך מושג — <strong>1🪙 שווה הרבה פחות מקלף שאבד</strong></div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-num">⚡</div>
+                                <div class="step-text">ניחוש אמן + שיר נכון = <strong>1 🪙 שלם</strong> — שווה לנסות תמיד!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /htp-body -->
+
+            <button class="htp-close" onclick="closeHtp()">🔥 בואו נשחק!</button>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- LOBBY                                      -->
+    <!-- ══════════════════════════════════════════ -->
     <div id="lobbyScreen" class="screen active">
         <div class="logo">
             <span class="logo-emoji">🔥</span>
@@ -1410,6 +2116,10 @@
                     </div>
                 </div>
                 <button class="btn" onclick="createRoom()">🎮 צור חדר</button>
+                <button class="btn-how" onclick="openHtp()">
+                    <span class="btn-how-icon">❓</span>
+                    איך משחקים? כל הכללים
+                </button>
                 <div id="createError" class="err"></div>
             </div>
             <div id="joinForm" style="display:none">
@@ -1419,6 +2129,10 @@
                     <input type="text" id="joinCode" placeholder="ABCD" maxlength="4" style="text-transform:uppercase;letter-spacing:6px;" autocomplete="off">
                 </div>
                 <button class="btn" onclick="joinRoom()">🚪 הצטרף</button>
+                <button class="btn-how" onclick="openHtp()">
+                    <span class="btn-how-icon">❓</span>
+                    איך משחקים? כל הכללים
+                </button>
                 <div id="joinError" class="err"></div>
             </div>
         </div>
@@ -1538,6 +2252,27 @@
     </div>
 
     <div class="toast" id="toast"></div>
+
+    <script>
+        // ── HTP Modal ──
+        function openHtp() {
+            document.getElementById('htpOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeHtp() {
+            document.getElementById('htpOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function htpClickOutside(e) {
+            if (e.target === document.getElementById('htpOverlay')) closeHtp();
+        }
+        // Swipe down to close
+        let htpStartY = 0;
+        document.getElementById('htpSheet').addEventListener('touchstart', e => { htpStartY = e.touches[0].clientY; }, { passive: true });
+        document.getElementById('htpSheet').addEventListener('touchend', e => {
+            if (e.changedTouches[0].clientY - htpStartY > 80) closeHtp();
+        }, { passive: true });
+    </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -1698,6 +2433,7 @@
         };
         window.setWin = n => {
             selectedWin = n;
+            document.getElementById("number_to_win").innerHTML = n.toString();
             document.querySelectorAll('.win-opt').forEach(b => b.classList.toggle('on', parseInt(b.textContent) === n));
         };
         function toast(msg, dur = 2500) {
@@ -1892,7 +2628,6 @@
             const me = players.find(p => p.id === myId);
             const winTarget = room.winTarget || 8;
 
-            // If currentSong changes while still guessing (swap), force re-init.
             const songId = room.currentSong?.dbId || null;
             const songChanged = songId && songId !== lastSongDbId;
             if (room.turnState === 'guessing' && songChanged) currentTurnState = '';
@@ -1905,10 +2640,10 @@
 
             document.getElementById('scores').innerHTML = [...players].sort((a, b) => b.score - a.score).map(p =>
                 `<div class="sc${p.id === activePlayerId ? ' active' : ''}${p.id === myId ? ' me' : ''}">
-              <div class="sc-n">${p.name}</div>
-              <div class="sc-p">${p.score} <span>קלפים</span></div>
-              <div class="coin-badge"><div class="coin-icon">🔥</div><span>${p.tokens || 0}</span></div>
-            </div>`).join('');
+                  <div class="sc-n">${p.name}</div>
+                  <div class="sc-p">${p.score} <span>קלפים</span></div>
+                  <div class="coin-badge"><div class="coin-icon">🔥</div><span>${p.tokens || 0}</span></div>
+                </div>`).join('');
 
             const banner = document.getElementById('banner');
             if (isMyTurn) { banner.textContent = 'התור שלך! לחץ + בציר הזמן למיקום'; banner.className = 'banner'; }
@@ -2035,9 +2770,9 @@
             else yearHint = 'כאן';
             const isSelected = selectedDropIndex === index;
             return `<div class="tl-drop${isSelected ? ' selected' : ''}" onclick="selectDrop(${index},'${yearHint}')">
-            <div class="tl-drop-inner">+</div>
-            <div class="tl-drop-year">${yearHint}</div>
-          </div>`;
+                <div class="tl-drop-inner">+</div>
+                <div class="tl-drop-year">${yearHint}</div>
+              </div>`;
         }
 
         function betDropZone(index, tl, room, betsByIndex, myBet, canBet) {
@@ -2060,26 +2795,26 @@
 
             if (isMyBetHere) {
                 return `<div class="tl-bet-drop locked">
-              ${count ? `<div class="bet-count">${count}</div>` : ``}
-              <div class="tl-bet-inner">🪙</div>
-              <div class="tl-bet-year">${yearHint}</div>
-              ${stackHtml}
-            </div>`;
+                  ${count ? `<div class="bet-count">${count}</div>` : ``}
+                  <div class="tl-bet-inner">🪙</div>
+                  <div class="tl-bet-year">${yearHint}</div>
+                  ${stackHtml}
+                </div>`;
             }
             if (!canBet) {
                 return `<div class="tl-bet-drop disabled">
-              ${count ? `<div class="bet-count">${count}</div>` : ``}
-              <div class="tl-bet-inner">🪙</div>
-              <div class="tl-bet-year">${yearHint}</div>
-              ${stackHtml}
-            </div>`;
+                  ${count ? `<div class="bet-count">${count}</div>` : ``}
+                  <div class="tl-bet-inner">🪙</div>
+                  <div class="tl-bet-year">${yearHint}</div>
+                  ${stackHtml}
+                </div>`;
             }
             return `<div class="tl-bet-drop${isSelected ? ' selected' : ''}" data-bet-label="${yearHint}" onclick="selectBet(${index},this.dataset.betLabel)">
-            ${count ? `<div class="bet-count">${count}</div>` : ``}
-            <div class="tl-bet-inner">🪙</div>
-            <div class="tl-bet-year">${yearHint}</div>
-            ${stackHtml}
-          </div>`;
+                ${count ? `<div class="bet-count">${count}</div>` : ``}
+                <div class="tl-bet-inner">🪙</div>
+                <div class="tl-bet-year">${yearHint}</div>
+                ${stackHtml}
+              </div>`;
         }
 
         window.selectDrop = (index, label) => {
@@ -2199,7 +2934,6 @@
                 const betCorrect = validIndices.includes(betIndex);
                 if (activeCorrect) { betResults.push({ name: room.players[pid].name, result: 'lose' }); return; }
                 if (betCorrect) {
-                    // FIX: insert chronologically in the bettor's own timeline
                     const spectatorTl = [...(room.players[pid]?.timeline || [])];
                     let insertAt = spectatorTl.findIndex(c => c.year > song.year);
                     if (insertAt === -1) insertAt = spectatorTl.length;
@@ -2274,12 +3008,12 @@
             stopAudio();
             const sorted = [...players].sort((a, b) => b.score - a.score);
             document.getElementById('gameScreen').innerHTML = `<div class="finish-screen">
-            <div class="finish-trophy">🏆</div>
-            <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
-            ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
-            <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
-            <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
-          </div>`;
+                <div class="finish-trophy">🏆</div>
+                <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
+                ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
+                <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
+                <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
+              </div>`;
         }
 
         window.leaveRoom = async () => {
@@ -2310,4 +3044,3 @@
     </script>
 </body>
 </html>
-
