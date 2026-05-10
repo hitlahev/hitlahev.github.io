@@ -2059,7 +2059,7 @@
                                 <div class="step-num">🪙</div>
                                 <div class="step-text">שמור את ה<strong>מיקום הבטוח</strong> (3🪙) לרגע קריטי — כשאתה ממש לא בטוח בעשור</div>
                             </div>
-                           
+
                             <div class="step-item">
                                 <div class="step-num">🔄</div>
                                 <div class="step-text">שווה להחליף שיר אם אין לך מושג — <strong>1🪙 שווה הרבה פחות מקלף שאבד</strong></div>
@@ -2289,6 +2289,30 @@
         };
         const db = getDatabase(initializeApp(FB));
 
+        // ── Stale room cleanup (runs once on page load) ──
+        (async () => {
+            try {
+                const snap = await get(ref(db, 'rooms'));
+                if (!snap.exists()) return;
+                const now = Date.now();
+                const WAITING_TTL = 30 * 60 * 1000;   // 30 min – room never started
+                const PLAYING_TTL = 2 * 60 * 60 * 1000; // 2 hr  – game abandoned/stuck
+                const FINISHED_TTL = 10 * 60 * 1000;   // 10 min – game over, lingering
+                const rooms = snap.val();
+                const deletes = [];
+                for (const [code, room] of Object.entries(rooms)) {
+                    const age = now - (room.createdAt || 0);
+                    const status = room.status || 'waiting';
+                    if (status === 'waiting' && age > WAITING_TTL) deletes.push(code);
+                    if (status === 'playing' && age > PLAYING_TTL) deletes.push(code);
+                    if (status === 'finished' && age > FINISHED_TTL) deletes.push(code);
+                    // Rooms with no createdAt older heuristic: >3h by default
+                    if (!room.createdAt && age > 3 * 60 * 60 * 1000) deletes.push(code);
+                }
+                await Promise.all(deletes.map(code => remove(ref(db, `rooms/${code}`)).catch(() => { })));
+            } catch { /* silent fail – cleanup is best-effort */ }
+        })();
+
         let myId = 'p_' + Math.random().toString(36).slice(2, 8);
         let myName = '', roomCode = '', isHost = false;
         let roomRef = null, roomUnsub = null;
@@ -2487,6 +2511,7 @@
                 host: myId, status: 'waiting', genre: g,
                 songs: songsForRoom, songIndex: 0, turnIndex: 0, winTarget: selectedWin,
                 playedSongs: {}, joinOrder: [myId],
+                createdAt: Date.now(),
                 players: { [myId]: { name, score: 1, tokens: 0, isHost: true } }
             });
             hideLoading();
@@ -2640,10 +2665,10 @@
 
             document.getElementById('scores').innerHTML = [...players].sort((a, b) => b.score - a.score).map(p =>
                 `<div class="sc${p.id === activePlayerId ? ' active' : ''}${p.id === myId ? ' me' : ''}">
-                  <div class="sc-n">${p.name}</div>
-                  <div class="sc-p">${p.score} <span>קלפים</span></div>
-                  <div class="coin-badge"><div class="coin-icon">🔥</div><span>${p.tokens || 0}</span></div>
-                </div>`).join('');
+                      <div class="sc-n">${p.name}</div>
+                      <div class="sc-p">${p.score} <span>קלפים</span></div>
+                      <div class="coin-badge"><div class="coin-icon">🔥</div><span>${p.tokens || 0}</span></div>
+                    </div>`).join('');
 
             const banner = document.getElementById('banner');
             if (isMyTurn) { banner.textContent = 'התור שלך! לחץ + בציר הזמן למיקום'; banner.className = 'banner'; }
@@ -2770,9 +2795,9 @@
             else yearHint = 'כאן';
             const isSelected = selectedDropIndex === index;
             return `<div class="tl-drop${isSelected ? ' selected' : ''}" onclick="selectDrop(${index},'${yearHint}')">
-                <div class="tl-drop-inner">+</div>
-                <div class="tl-drop-year">${yearHint}</div>
-              </div>`;
+                    <div class="tl-drop-inner">+</div>
+                    <div class="tl-drop-year">${yearHint}</div>
+                  </div>`;
         }
 
         function betDropZone(index, tl, room, betsByIndex, myBet, canBet) {
@@ -2795,26 +2820,26 @@
 
             if (isMyBetHere) {
                 return `<div class="tl-bet-drop locked">
-                  ${count ? `<div class="bet-count">${count}</div>` : ``}
-                  <div class="tl-bet-inner">🪙</div>
-                  <div class="tl-bet-year">${yearHint}</div>
-                  ${stackHtml}
-                </div>`;
+                      ${count ? `<div class="bet-count">${count}</div>` : ``}
+                      <div class="tl-bet-inner">🪙</div>
+                      <div class="tl-bet-year">${yearHint}</div>
+                      ${stackHtml}
+                    </div>`;
             }
             if (!canBet) {
                 return `<div class="tl-bet-drop disabled">
-                  ${count ? `<div class="bet-count">${count}</div>` : ``}
-                  <div class="tl-bet-inner">🪙</div>
-                  <div class="tl-bet-year">${yearHint}</div>
-                  ${stackHtml}
-                </div>`;
+                      ${count ? `<div class="bet-count">${count}</div>` : ``}
+                      <div class="tl-bet-inner">🪙</div>
+                      <div class="tl-bet-year">${yearHint}</div>
+                      ${stackHtml}
+                    </div>`;
             }
             return `<div class="tl-bet-drop${isSelected ? ' selected' : ''}" data-bet-label="${yearHint}" onclick="selectBet(${index},this.dataset.betLabel)">
-                ${count ? `<div class="bet-count">${count}</div>` : ``}
-                <div class="tl-bet-inner">🪙</div>
-                <div class="tl-bet-year">${yearHint}</div>
-                ${stackHtml}
-              </div>`;
+                    ${count ? `<div class="bet-count">${count}</div>` : ``}
+                    <div class="tl-bet-inner">🪙</div>
+                    <div class="tl-bet-year">${yearHint}</div>
+                    ${stackHtml}
+                  </div>`;
         }
 
         window.selectDrop = (index, label) => {
@@ -2990,7 +3015,7 @@
             const winTarget = room.winTarget || 8;
             const maxScore = Math.max(...Object.values(room.players).map(p => p.score));
             if (maxScore >= winTarget) {
-                await update(ref(db, `rooms/${roomCode}`), { status: 'finished' });
+                await update(ref(db, `rooms/${roomCode}`), { status: 'finished', finishedAt: Date.now() });
                 setTimeout(() => remove(ref(db, `rooms/${roomCode}`)).catch(() => { }), 15000);
             } else {
                 currentTurnState = ''; stopAudio();
@@ -3008,12 +3033,12 @@
             stopAudio();
             const sorted = [...players].sort((a, b) => b.score - a.score);
             document.getElementById('gameScreen').innerHTML = `<div class="finish-screen">
-                <div class="finish-trophy">🏆</div>
-                <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
-                ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
-                <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
-                <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
-              </div>`;
+                    <div class="finish-trophy">🏆</div>
+                    <div class="finish-winner">${sorted[0]?.name} ניצח!</div>
+                    ${sorted.map((p, i) => `<div class="finish-row">${['🥇', '🥈', '🥉'][i] || '•'} <span>${p.name}</span> — ${p.score} קלפים, ${p.tokens || 0}🪙</div>`).join('')}
+                    <br><button class="btn" style="max-width:200px;margin-top:16px" onclick="location.reload()">חזור להתחלה</button>
+                    <div style="margin-top:24px;font-size:.7rem;color:var(--muted)">by <strong style="color:var(--muted2)">Lev</strong> 🔥</div>
+                  </div>`;
         }
 
         window.leaveRoom = async () => {
