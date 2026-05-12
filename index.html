@@ -3064,7 +3064,13 @@
             location.reload();
         };
 
-        document.getElementById('guessArtist')?.addEventListener('input', () => scheduleGuessDraftWrite(false));
+        document.querySelectorAll('.tl-scroll').forEach(el => {
+            el.addEventListener('wheel', e => {
+                if (e.deltaY === 0) return;
+                e.preventDefault();
+                el.scrollLeft -= e.deltaY * 1.5;
+            }, { passive: false });
+        });
         document.getElementById('guessTitle')?.addEventListener('input', () => scheduleGuessDraftWrite(false));
     </script>
 </body>
