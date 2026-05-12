@@ -2604,7 +2604,7 @@
                 const winTarget = room.winTarget || 8;
                 const GL = { all: 'הכול', hits: 'הכי גדולים', pop: 'פופ', rock: 'רוק', mizrahi: 'מזרחי', hiphop: 'היפ הופ', electronic: 'אלקטרוני' };
                 document.getElementById('gameInfoBadges').innerHTML = `<div class="info-badge">🎵 ז'אנר: <span>${GL[room.genre] || room.genre}</span></div><div class="info-badge">🎯 ניצחון: <span>${winTarget} קלפים</span></div>`;
-                if (isHost) document.getElementById('startBtn').disabled = players.length < 1;
+                if (isHost) document.getElementById('startBtn').disabled = false;
                 document.getElementById('hostControls').style.display = isHost ? 'block' : 'none';
                 document.getElementById('guestWait').style.display = isHost ? 'none' : 'block';
                 return;
@@ -2615,7 +2615,7 @@
 
                 const presence = room.presence || {};
                 const connectedPlayers = players.filter(p => presence[p.id]?.connected === true);
-                if (connectedPlayers.length === 1) {
+                if (connectedPlayers.length === 0) {
                     update(ref(db, `rooms/${roomCode}`), { status: 'finished', winnerId: connectedPlayers[0].id, finishedAt: Date.now() }).catch(() => { });
                     return;
                 }
